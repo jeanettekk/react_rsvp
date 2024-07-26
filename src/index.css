@@ -66,3 +66,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.bg-image {
+  position: absolute;
+  top: 0;
+}
