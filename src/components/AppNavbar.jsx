@@ -28,7 +28,8 @@ const Title = styled.h1`
 `;
 
 const StyledNavLink = styled(Nav.Link)`
-  font-size: 1.2rem;
+  font-size: 1.05rem;
+  text-transform: uppercase;
   color: #F1DAC4;
   margin: 0 1rem; /* Adjust spacing between nav links */
    transition: color 0.3s ease-in-out; /* Smooth transition for color change */
