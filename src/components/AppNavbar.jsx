@@ -23,7 +23,7 @@ const NavItemsContainer = styled(Nav)`
 
 const Title = styled.h1`
   font-size: 2.2rem;
-  color: white;
+  color: #fdb21e;
   margin: 0 2rem; /* Add some margin to keep it separated from the links */
 `;
 
@@ -31,6 +31,11 @@ const StyledNavLink = styled(Nav.Link)`
   font-size: 1.2rem;
   color: white;
   margin: 0 1rem; /* Adjust spacing between nav links */
+   transition: color 0.3s ease-in-out; /* Smooth transition for color change */
+
+  &:hover {
+    color: #fdb21e; /* Change to yellow on hover */
+    text-decoration: none; /* Optionally remove underline on hover */
 `;
 
 const AppNavbar = () => {
