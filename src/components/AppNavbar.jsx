@@ -4,12 +4,14 @@ import { Navbar, Nav } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavbarContainer = styled(Navbar)`
-  position: absolute; /* Keeps the navbar at the top */
-  top: 0; 
-  width: 100%; /* Ensure it spans the full width of the page */
-  z-index: 1000; 
+  position: absolute;
+  top: 5%; /* Move the navbar down */
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center it vertically and horizontally */
+  width: 100%;
+  z-index: 1000;
   display: flex;
-  justify-content: center; /* Center everything within the navbar */
+  justify-content: center;
   align-items: center;
 `;
 
