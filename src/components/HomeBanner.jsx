@@ -20,7 +20,7 @@ const ImageContainer = styled.div`
   align-items: center;
   border-top: 3px solid #F4504C; /* Add the yellow border around the image container */
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-  background-color: #084C61;
+  background-color: #F2E5D7;
 `;
 
 const Image = styled.img`
