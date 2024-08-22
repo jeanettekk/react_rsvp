@@ -30,6 +30,10 @@ const Image = styled.img`
   object-position: 0 24%;
 `;
 
+const StyledH1 = styled.h1`
+  color: #F4504C;
+`;
+
 const HomeBanner = () => {
   return (
     <>
@@ -39,6 +43,11 @@ const HomeBanner = () => {
         </nav>
       </BannerContainer>
       <ImageContainer>
+        <div className="col text-center">
+          <StyledH1>We're getting married!</StyledH1>
+          <h2 className="p-4">February 26, 2026, Thursday</h2>
+          <h5>Raeburn Pl<br />Edinburgh, Midlothian<br />EH4 1HX</h5>
+        </div>
         <Image src={couple} alt="Couple" />
       </ImageContainer>
     </>
