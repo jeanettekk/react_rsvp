@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import couple from '../assets/images/couple.jpg';
 
 const BannerContainer = styled.div`
-  background-color: #be0e65;
   height: 10vh; /* Adjust the height as needed */
   width: 100vw;
   display: flex;
@@ -18,7 +17,6 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 3px solid #F4504C; /* Add the yellow border around the image container */
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
   background-color: #F2E5D7;
 `;

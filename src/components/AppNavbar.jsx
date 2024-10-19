@@ -9,10 +9,13 @@ const NavbarContainer = styled(Navbar)`
   left: 50%;
   transform: translate(-50%, -50%); /* Center it vertically and horizontally */
   width: 100%;
+  min-height: 88px;
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #be0e65;
+  border-bottom: 3px solid #F4504C; /* Add the yellow border around the image container */
 `;
 
 const NavItemsContainer = styled(Nav)`
