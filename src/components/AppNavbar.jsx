@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const NavbarContainer = styled(Navbar)`
   position: absolute;
@@ -8,10 +9,13 @@ const NavbarContainer = styled(Navbar)`
   left: 50%;
   transform: translate(-50%, -50%); /* Center it vertically and horizontally */
   width: 100%;
+  min-height: 88px;
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #be0e65;
+  border-bottom: 3px solid #F4504C; /* Add the yellow border around the image container */
 `;
 
 const NavItemsContainer = styled(Nav)`
@@ -74,39 +78,51 @@ const AppNavbar = () => {
     <NavbarContainer className="p-3" expand="lg">
       <NavItemsContainer>
 
-        <StyledNavLink 
-          href="#about" 
-          active={activeLink === '#about'}
-          onClick={() => handleNavClick('#about')}>About Us</StyledNavLink>
+      <StyledNavLink 
+          as={Link} // Specify the component to render
+          to="/" 
+          active={activeLink === '/'}
+          onClick={() => handleNavClick('/')}>Home</StyledNavLink>
 
         <StyledNavLink 
-          href="#schedule" 
-          active={activeLink === '#schedule'}
-          onClick={() => handleNavClick('#schedule')}>Schedule</StyledNavLink>
+          as={Link} 
+          to="/about" 
+          active={activeLink === '/about'}
+          onClick={() => handleNavClick('/about')}>About Us</StyledNavLink>
 
         <StyledNavLink 
-          href="#groomsmen" 
-          active={activeLink === '#groomsmen'}
-          onClick={() => handleNavClick('#groomsmen')}>Groomsmen</StyledNavLink>
+          as={Link} 
+          to="/schedule" 
+          active={activeLink === '/schedule'}
+          onClick={() => handleNavClick('/schedule')}>Schedule</StyledNavLink>
 
         <TitleLink 
-          href="#home" 
-          active={activeLink === '#home'}
-          onClick={() => handleNavClick('#home')}
+          to="/" 
+          active={activeLink === '/'}
+          onClick={() => handleNavClick('/')}
           as="h1">Rhys & Teniola</TitleLink> {/* Render as an <h1> element */}
-          
-        <StyledNavLink 
-          href="#bridesmaids" 
-          active={activeLink === '#bridesmaids'}
-          onClick={() => handleNavClick('#bridesmaids')}>Bridesmaids</StyledNavLink>
 
         <StyledNavLink 
-          href="#location" 
-          active={activeLink === '#location'}
-          onClick={() => handleNavClick('#location')}>Location</StyledNavLink>
+          as={Link} 
+          to="/groomsmen" 
+          active={activeLink === '/groomsmen'}
+          onClick={() => handleNavClick('/groomsmen')}>Groomsmen</StyledNavLink>
+
+        <StyledNavLink 
+          as={Link} 
+          to="/bridesmaids" 
+          active={activeLink === '/bridesmaids'}
+          onClick={() => handleNavClick('/bridesmaids')}>Bridesmaids</StyledNavLink>
+
+        <StyledNavLink 
+          as={Link} 
+          to="/location" 
+          active={activeLink === '/location'}
+          onClick={() => handleNavClick('/location')}>Location</StyledNavLink>
 
         <StyledButton 
-          href="#RSVP" 
+          as={Link} 
+          to="/RSVP" 
           type="button" 
           className="btn">RSVP</StyledButton>
           
