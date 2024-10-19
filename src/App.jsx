@@ -4,9 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
 import HomeBanner from './components/HomeBanner';
 import WelcomeMessage from './components/WelcomeMessage';
-import Home from './pages/Home';  // Home component
-import AboutUs from './pages/AboutUs';
-import Schedule from './pages/Schedule';
+import { Home, AboutUs, Schedule, Groomsmen, Bridesmaids, Location, Rsvp } from './pages'; // Updated import statement
+
 
 const App = () => {
   return (
@@ -25,12 +24,12 @@ const App = () => {
               </>
             } 
           />
-
-          {/* About Us route */}
           <Route path="/about" element={<AboutUs />} />
-
-          {/* Schedule route */}
           <Route path="/schedule" element={<Schedule />} />
+          <Route path="/groomsmen" element={<Groomsmen />} />
+          <Route path="/bridesmaids" element={<Bridesmaids />} />
+          <Route path="/location" element={<Location />} />
+          <Route path="/rsvp" element={<Rsvp />} />
         </Routes>
       </div>
     </>
