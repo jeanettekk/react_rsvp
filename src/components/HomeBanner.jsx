@@ -20,7 +20,7 @@ const ImageContainer = styled.div`
   align-items: center;
   border-top: 3px solid #F4504C; /* Add the yellow border around the image container */
   box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-  background-color: #084C61;
+  background-color: #F2E5D7;
 `;
 
 const Image = styled.img`
@@ -28,6 +28,10 @@ const Image = styled.img`
   height: 100%;
   object-fit: cover;
   object-position: 0 24%;
+`;
+
+const StyledH1 = styled.h1`
+  color: #F4504C;
 `;
 
 const HomeBanner = () => {
@@ -39,6 +43,11 @@ const HomeBanner = () => {
         </nav>
       </BannerContainer>
       <ImageContainer>
+        <div className="col text-center">
+          <StyledH1>We're getting married!</StyledH1>
+          <h2 className="p-4">February 26, 2026, Thursday</h2>
+          <h5>Raeburn Pl<br />Edinburgh, Midlothian<br />EH4 1HX</h5>
+        </div>
         <Image src={couple} alt="Couple" />
       </ImageContainer>
     </>
