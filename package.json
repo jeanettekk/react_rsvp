@@ -14,10 +14,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
     "bootstrap": "^5.3.3",
-    "react": "^18.3.1",
+    "react": "^17.0.0 || ^18.0.0",
     "react-bootstrap": "^2.10.4",
-    "react-dom": "^18.3.1",
+    "react-dom": "^17.0.0 || ^18.0.0",
     "react-router-dom": "^6.27.0",
     "styled-components": "^6.1.12"
   },
@@ -31,5 +35,9 @@
     "eslint-plugin-react-refresh": "^0.4.7",
     "gh-pages": "^6.1.1",
     "vite": "^5.3.5"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   }
 }

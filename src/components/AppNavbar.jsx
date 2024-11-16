@@ -24,7 +24,7 @@ const NavItemsContainer = styled(Nav)`
   align-items: center;
 `;
 
-const TitleLink = styled.a`
+const TitleLink = styled(Link)`
   font-size: 2.2rem;
   color: #fdb21e;
   margin: 0 2rem; /* Add some margin to keep it separated from the links */
@@ -48,6 +48,10 @@ const StyledNavLink = styled(Nav.Link)`
     color: #fdb21e !important; /* Change to yellow on hover */
     text-decoration: none; /* Optionally remove underline on hover */
   }
+  
+  @media (max-width: 1103px) {
+    display: none;
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -64,6 +68,10 @@ const StyledButton = styled(Button)`
   &:active {
     background-color: #fdc149 !important;
     border-color: #fdc149 !important;
+  }
+  
+  @media (max-width: 1103px) {
+    display: none;
   }
 `;
 

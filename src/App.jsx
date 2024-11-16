@@ -1,17 +1,16 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import AppNavbar from './components/AppNavbar';
+import SideMenu from './components/SideMenu';
 import HomeBanner from './components/HomeBanner';
 import WelcomeMessage from './components/WelcomeMessage';
-import { Home, AboutUs, Schedule, Groomsmen, Bridesmaids, Location, Rsvp } from './pages'; // Updated import statement
-
+import { Home, AboutUs, Schedule, Groomsmen, Bridesmaids, Location, Rsvp } from './pages'; // Import components
 
 const App = () => {
   return (
     <>
-      <AppNavbar />  {/* Navbar visible on all routes */}
-
+      <AppNavbar />
+      {/* <SideMenu /> */}
       <div>
         <Routes>
           {/* Home route with HomeBanner */}
