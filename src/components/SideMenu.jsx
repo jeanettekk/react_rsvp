@@ -1,10 +1,16 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
 import ListItem from '@mui/material/ListItem';
+import Face2Icon from '@mui/icons-material/Face2';
+import Face6Icon from '@mui/icons-material/Face6';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -29,6 +35,8 @@ export default function SideMenu() {
     { text: 'RSVP', path: '/RSVP' },
   ];
 
+  const icons = [<HomeIcon />, <FavoriteIcon />, <EventNoteIcon />, <Face6Icon />, <Face2Icon />, <LocationOnIcon />, <MailIcon />];
+
   const DrawerList = (
     <Box
       sx={{ width: 250 }}
@@ -41,7 +49,7 @@ export default function SideMenu() {
           <ListItem key={item.text} disablePadding>
             <ListItemButton component={Link} to={item.path}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {icons[index] || null}
               </ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>
@@ -53,7 +61,16 @@ export default function SideMenu() {
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+      
+      <IconButton
+            onClick={toggleDrawer(true)}
+            size="large"
+            edge="start"
+            sx={{ color: '#FFFFFF' }}
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>

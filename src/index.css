@@ -13,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
 a, h2, h5 {
 
   font-family: "Urbanist", sans-serif;
@@ -33,14 +41,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-family: "Prata", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
