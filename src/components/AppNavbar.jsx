@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import SideMenu from '../components/SideMenu';
 
 const NavbarContainer = styled(Navbar)`
   position: absolute;
@@ -84,6 +85,7 @@ const AppNavbar = () => {
 
   return (
     <NavbarContainer className="p-3" expand="lg">
+      <SideMenu />
       <NavItemsContainer>
 
       <StyledNavLink 
