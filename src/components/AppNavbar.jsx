@@ -120,7 +120,7 @@ const AppNavbar = () => {
           as={Link} 
           to="/about" 
           active={activeLink === '/about'}
-          onClick={() => handleNavClick('/about')}>About Us</StyledNavLink>
+          onClick={() => handleNavClick('/about')}>Our Story</StyledNavLink>
 
         <StyledNavLink 
           as={Link} 

@@ -14,7 +14,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { Link } from 'react-router-dom';
 
@@ -27,7 +26,7 @@ export default function SideMenu() {
 
   const menuItems = [
     { text: 'Home', path: '/' },
-    { text: 'About Us', path: '/about' },
+    { text: 'Our Story', path: '/ourstory' },
     { text: 'Schedule', path: '/schedule' },
     { text: 'Groomsmen', path: '/groomsmen' },
     { text: 'Bridesmaids', path: '/bridesmaids' },
