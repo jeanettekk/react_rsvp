@@ -1,21 +1,8 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import ListItem from '@mui/material/ListItem';
-import Face2Icon from '@mui/icons-material/Face2';
-import Face6Icon from '@mui/icons-material/Face6';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import EventNoteIcon from '@mui/icons-material/EventNote';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
+import { Box, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton } from '@mui/material';
+import { Menu as MenuIcon, Home as HomeIcon, Face2 as Face2Icon, Face6 as Face6Icon, Favorite as FavoriteIcon, EventNote as EventNoteIcon, LocationOn as LocationOnIcon, Mail as MailIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+
 
 export default function SideMenu() {
   const [open, setOpen] = React.useState(false);
