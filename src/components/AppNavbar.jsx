@@ -5,18 +5,17 @@ import { Link } from 'react-router-dom';
 import SideMenu from '../components/SideMenu';
 
 const NavbarContainer = styled(Navbar)`
-  position: absolute;
-  top: 5%; /* Move the navbar down */
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center it vertically and horizontally */
-  width: 100%;
-  min-height: 88px;
-  z-index: 1000;
+  position: fixed; /* Fix the navbar to the top of the viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Make sure the navbar spans the full width */
+  height: 88px; /* Use a fixed height for consistent spacing */
+  z-index: 1000; /* Ensure it stays above other content */
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #be0e65;
-  border-bottom: 3px solid #F4504C; /* Add the yellow border around the image container */
+  border-bottom: 3px solid #F4504C;
 `;
 
 const NavItemsContainer = styled(Nav)`
@@ -120,7 +119,7 @@ const AppNavbar = () => {
           as={Link} 
           to="/about" 
           active={activeLink === '/about'}
-          onClick={() => handleNavClick('/about')}>About Us</StyledNavLink>
+          onClick={() => handleNavClick('/about')}>Our Story</StyledNavLink>
 
         <StyledNavLink 
           as={Link} 
