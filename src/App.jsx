@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <AppNavbar />
-      <div style={{ paddingTop: '88px' }}> {/* Add padding equal to navbar height */}
+      <div style={{ paddingTop: '80px' }}> {/* Add padding equal to navbar height */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
