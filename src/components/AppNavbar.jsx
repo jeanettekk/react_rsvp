@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import SideMenu from '../components/SideMenu';
 
 const NavbarContainer = styled(Navbar)`
   position: absolute;
@@ -24,8 +25,9 @@ const NavItemsContainer = styled(Nav)`
   align-items: center;
 `;
 
-const TitleLink = styled.a`
+const TitleLink = styled(Link)`
   font-size: 2.2rem;
+  font-family: "Prata", serif;
   color: #fdb21e;
   margin: 0 2rem; /* Add some margin to keep it separated from the links */
   text-decoration: none; /* Remove underline */
@@ -48,6 +50,10 @@ const StyledNavLink = styled(Nav.Link)`
     color: #fdb21e !important; /* Change to yellow on hover */
     text-decoration: none; /* Optionally remove underline on hover */
   }
+  
+  @media (max-width: 1103px) {
+    display: none;
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -65,6 +71,27 @@ const StyledButton = styled(Button)`
     background-color: #fdc149 !important;
     border-color: #fdc149 !important;
   }
+  
+  @media (max-width: 1103px) {
+    display: none;
+  }
+`;
+
+const MenuButton = styled(Button)`
+  position: absolute;
+  left: 10px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  &:hover, &:active {
+    background: transparent !important; /* Ensure the background stays transparent when clicked */
+    box-shadow: none !important; /* Remove box shadow when clicked */
+  }
+
+  @media (min-width: 1103px) {
+    display: none;
+  }
 `;
 
 const AppNavbar = () => {
@@ -76,6 +103,11 @@ const AppNavbar = () => {
 
   return (
     <NavbarContainer className="p-3" expand="lg">
+
+      <MenuButton>
+        <SideMenu />
+      </MenuButton>
+
       <NavItemsContainer>
 
       <StyledNavLink 
@@ -100,7 +132,7 @@ const AppNavbar = () => {
           to="/" 
           active={activeLink === '/'}
           onClick={() => handleNavClick('/')}
-          as="h1">Rhys & Teniola</TitleLink> {/* Render as an <h1> element */}
+          as={Link}>Rhys & Teniola</TitleLink> {/* Render as an <h1> element */}
 
         <StyledNavLink 
           as={Link} 
