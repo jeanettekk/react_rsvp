@@ -1,11 +1,16 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 import couple from '../assets/images/couple.jpg';
 
 const Home = () => {
+  const theme = useTheme();
+  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
-    <Box sx={{ flexGrow: 1, height: '100vh', width: '100vw', overflowY: 'auto' }}>
+    <Box sx={{ flexGrow: 1, height: '100vh', width: '100vw', overflowY: 'auto', backgroundColor: '#F2E5D7' }}>
       <Grid container spacing={2} sx={{ height: '100vh' }}>
         {/* Left Section */}
         <Grid
@@ -14,21 +19,16 @@ const Home = () => {
           md={6}
           sx={{
             order: { xs: 2, md: 1 },
-            display: 'flex',
+            display: { xs: 'none', sm: 'flex' }, // Hide on small screens
             justifyContent: 'center',
             alignItems: 'center',
           }}
         >
-          <Box
-            sx={{
-              textAlign: 'center',
-              padding: '50px 10px 50px 10px'
-            }}
-          >
+          <Box sx={{ textAlign: 'center', padding: '50px 10px 50px 10px' }}>
             <h1 style={{ margin: 0, fontSize: '2.5rem', color: '#F4504C' }}>
               We're getting married!
             </h1>
-            <h2 style={{padding: '20px'}}>February 26, 2026, Thursday</h2>
+            <h2 style={{ padding: '20px' }}>February 26, 2026, Thursday</h2>
             <h5>
               St Marks Church
               <br />
@@ -47,6 +47,7 @@ const Home = () => {
           sx={{
             order: { xs: 1, md: 2 },
             height: '100vh',
+            position: 'relative', // For positioning overlay text on top of image
           }}
         >
           <Box sx={{ height: '100%', width: '100%' }}>
@@ -61,6 +62,36 @@ const Home = () => {
                 display: 'block',
               }}
             />
+
+            {/* Overlay Text for Small Screens */}
+            {isMediumScreen && (
+              <Box
+                sx={{
+                  position: 'absolute',
+                  width: '80%',
+                  top: '80%',
+                  left: '51%',
+                  transform: 'translate(-50%, -50%)',
+                  textAlign: 'center',
+                  backgroundColor: '#F2E5D7',
+                  padding: '30px 15px 30px 15px',
+                  borderRadius: '25px',
+                  border: '3px solid #F4504C'
+                }}
+              >
+                <h1 style={{ margin: 0, fontSize: '1.8rem', color: '#F4504C' }}>
+                  We're getting married!
+                </h1>
+                <h2 style={{ padding: '20px' }}>February 26, 2026, Thursday</h2>
+                <h5>
+                  St Marks Church
+                  <br />
+                  82 Lincoln Rd, Peterborough
+                  <br />
+                  PE1 2SN
+                </h5>
+              </Box>
+            )}
           </Box>
         </Grid>
       </Grid>
