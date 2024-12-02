@@ -4,10 +4,11 @@ import Grid from '@mui/material/Grid';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import couple from '../assets/images/couple.jpg';
+import CountdownTimer from '../components/CountdownTimer';
 
 const Home = () => {
   const theme = useTheme();
-  const isMediumScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Box sx={{ flexGrow: 1, height: '100vh', width: '100vw', overflowY: 'auto', backgroundColor: '#F2E5D7' }}>
@@ -28,14 +29,15 @@ const Home = () => {
             <h1 style={{ margin: 0, fontSize: '2.5rem', color: '#F4504C' }}>
               We're getting married!
             </h1>
-            <h2 style={{ padding: '20px' }}>February 26, 2026, Thursday</h2>
-            <h5>
-              St Marks Church
-              <br />
-              82 Lincoln Rd, Peterborough
-              <br />
-              PE1 2SN
-            </h5>
+            <h3 style={{ padding: '30px' }}>February 26, 2026, Thursday</h3>
+
+            <h5>St Marks Church</h5>
+            <h5>82 Lincoln Rd, Peterborough</h5>
+            <h5>PE1 2SN</h5>
+
+            <Box sx={{ marginTop: '30%' }}>
+              <CountdownTimer />
+            </Box>
           </Box>
         </Grid>
 
@@ -64,7 +66,7 @@ const Home = () => {
             />
 
             {/* Overlay Text for Small Screens */}
-            {isMediumScreen && (
+            {isSmallScreen && (
               <Box
                 sx={{
                   position: 'absolute',
@@ -75,21 +77,19 @@ const Home = () => {
                   textAlign: 'center',
                   backgroundColor: '#F2E5D7',
                   padding: '30px 15px 30px 15px',
-                  borderRadius: '25px',
+                  borderRadius: '14px',
                   border: '3px solid #F4504C'
                 }}
               >
                 <h1 style={{ margin: 0, fontSize: '1.8rem', color: '#F4504C' }}>
                   We're getting married!
                 </h1>
-                <h2 style={{ padding: '20px' }}>February 26, 2026, Thursday</h2>
-                <h5>
-                  St Marks Church
-                  <br />
-                  82 Lincoln Rd, Peterborough
-                  <br />
-                  PE1 2SN
-                </h5>
+                <h3 style={{ padding: '20px' }}>February 26, 2026, Thursday</h3>
+
+                <h5>St Marks Church</h5>
+                <h5>82 Lincoln Rd, Peterborough</h5>
+                <h5>PE1 2SN</h5>
+                
               </Box>
             )}
           </Box>
