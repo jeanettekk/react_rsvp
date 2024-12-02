@@ -16,7 +16,6 @@ const NavbarContainer = styled(Navbar)`
   align-items: center;
   background-color: #be0e65;
   border-bottom: 3px solid #F4504C;
-  padding: 0.5rem 0;
 `;
 
 const TitleSection = styled.div`
@@ -25,7 +24,6 @@ const TitleSection = styled.div`
   justify-content: center;
   position: relative; /* To allow MenuButton positioning */
   width: 100%;
-  margin-bottom: 0.5rem; /* Add spacing below the title */
 `;
 
 const TitleLink = styled(Link)`
@@ -76,6 +74,7 @@ const StyledNavLink = styled(Nav.Link)`
   text-transform: uppercase;
   color: ${(props) => (props.active ? '#fdb21e' : '#F2E5D7')};
   transition: color 0.3s ease-in-out;
+  margin-top: 10px;
 
   &:hover {
     color: #fdb21e;
@@ -91,6 +90,7 @@ const StyledButton = styled(Button)`
   padding: 0.1rem 1rem;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: 10px;
 
   &:hover {
     background-color: #fdc149;

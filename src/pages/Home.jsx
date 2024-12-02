@@ -77,7 +77,7 @@ const Home = () => {
                   textAlign: 'center',
                   backgroundColor: '#F2E5D7',
                   padding: '30px 15px 30px 15px',
-                  borderRadius: '25px',
+                  borderRadius: '14px',
                   border: '3px solid #F4504C'
                 }}
               >
