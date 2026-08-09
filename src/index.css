@@ -37,9 +37,34 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.app-content {
+  padding-top: 76px;
+}
+
+.scroll-section {
+  scroll-margin-top: 76px;
+}
+
+@media (max-width: 1103px) {
+  .app-content {
+    padding-top: 56px;
+  }
+
+  .scroll-section {
+    scroll-margin-top: 56px;
+  }
+}
+
+#root {
+  width: 100%;
   min-height: 100vh;
 }
 

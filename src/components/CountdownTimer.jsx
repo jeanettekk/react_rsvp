@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 
 const CountdownTimer = () => {
-  const weddingDate = new Date('February 26, 2026 00:00:00').getTime();
+  const weddingDate = new Date('February 26, 2027 00:00:00').getTime();
 
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
