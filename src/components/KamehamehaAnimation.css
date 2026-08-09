@@ -93,7 +93,7 @@
   box-shadow: 0 0 10px #fff, 0 0 24px #48e4ff, 0 0 44px #167dff;
   opacity: 0;
   transform: translate(50%, -50%) scale(.1);
-  animation: rsvp-kamehameha-orb 7s ease-in-out infinite;
+  animation: rsvp-kamehameha-orb 7s cubic-bezier(.18, .88, .3, 1) infinite;
 }
 
 .rsvp-kamehameha-beam {
@@ -220,13 +220,13 @@
     opacity: 1;
     transform: translate(50%, -50%) scale(1.25);
   }
-  50% {
+  50%, 67% {
     top: var(--fire-origin-top);
     right: var(--fire-origin-right);
     opacity: 1;
     transform: translate(50%, -50%) scale(1.25);
   }
-  55%, 100% {
+  74%, 100% {
     top: var(--fire-origin-top);
     right: var(--fire-origin-right);
     opacity: 0;

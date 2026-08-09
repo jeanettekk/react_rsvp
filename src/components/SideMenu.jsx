@@ -48,7 +48,7 @@ export default function SideMenu() {
             textTransform: 'uppercase',
           }}
         >
-          26 February 2027
+          Saturday · 27 February 2027
         </Typography>
       </Box>
       <Divider sx={{ mx: 3, borderColor: 'rgba(190, 14, 101, .18)' }} />
