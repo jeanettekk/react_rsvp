@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SideMenu from './SideMenu';
+import chibiGoku from '../assets/images/chibi-goku-groom.webp';
+import chibiChiChi from '../assets/images/chibi-chichi-bride.webp';
 
 const NavbarContainer = styled(Navbar)`
   position: fixed;
@@ -14,14 +16,14 @@ const NavbarContainer = styled(Navbar)`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 5px 24px 8px;
+  padding: 9px 24px 8px;
   border-bottom: 1px solid rgba(253, 178, 30, .28);
   background: rgba(190, 14, 101, .96);
   box-shadow: 0 8px 28px rgba(50, 27, 39, .18);
   backdrop-filter: blur(14px);
 
   @media (max-width: 1103px) {
-    padding: 7px 18px;
+    padding: 10px 18px 7px;
   }
 `;
 
@@ -34,11 +36,44 @@ const TitleSection = styled.div`
 `;
 
 const TitleLink = styled(Link)`
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: .42rem;
   font-size: 1.9rem;
   font-family: "Prata", serif;
+  line-height: 1;
+  white-space: nowrap;
   color: #fdb21e;
   text-decoration: none;
   &:hover { color: #fdb21e; text-decoration: none; }
+
+  @media (max-width: 1103px) {
+    gap: .34rem;
+    font-size: 1.65rem;
+  }
+
+  @media (max-width: 560px) {
+    gap: .28rem;
+    font-size: 1.35rem;
+  }
+`;
+
+const TitleCharacter = styled.img`
+  width: auto;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+  transform: translateY(-3px);
+  filter: drop-shadow(0 2px 3px rgba(50, 27, 39, .32));
+
+  @media (max-width: 1103px) {
+    height: 2.1rem;
+  }
+
+  @media (max-width: 560px) {
+    height: 1.8rem;
+  }
 `;
 
 const MenuButton = styled(Button)`
@@ -116,7 +151,13 @@ const AppNavbar = () => (
   <NavbarContainer>
     <TitleSection>
       <MenuButton aria-label="Open navigation"><SideMenu /></MenuButton>
-      <TitleLink to="/#home">Rhys & Teniola</TitleLink>
+      <TitleLink to="/#home">
+        <TitleCharacter src={chibiGoku} alt="" aria-hidden="true" draggable="false" />
+        <span>Rhys</span>
+        <span aria-hidden="true">&</span>
+        <span>Teniola</span>
+        <TitleCharacter src={chibiChiChi} alt="" aria-hidden="true" draggable="false" />
+      </TitleLink>
     </TitleSection>
     <NavItemsContainer>
       {links.map(([label, path]) => (

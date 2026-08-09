@@ -13,7 +13,7 @@ const Schedule = () => {
   return (
     <main className="wedding-page">
       <header className="page-intro">
-        <span className="page-kicker">Friday · 26 February 2027</span>
+        <span className="page-kicker">Saturday · 27 February 2027</span>
         <h1>The Schedule</h1>
         <p>A placeholder guide to our wedding day. Final timings and any extra guest information can be added here closer to the celebration.</p>
       </header>

@@ -1,4 +1,4 @@
-import couple from '../assets/images/couple.jpg';
+import couple from '../assets/images/couple-home.jpg';
 import CountdownTimer from '../components/CountdownTimer';
 import './WeddingPages.css';
 
@@ -8,7 +8,7 @@ const Home = () => (
       <div className="home-copy">
         <span className="page-kicker">Save the date</span>
         <h1>We&apos;re getting married!</h1>
-        <p className="home-date">Friday · 26 February 2027</p>
+        <p className="home-date">Saturday · 27 February 2027</p>
         <div className="home-venue">
           <span>Ceremony at</span>
           <strong>St Mark&apos;s Church</strong>
