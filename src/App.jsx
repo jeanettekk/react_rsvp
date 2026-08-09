@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
+import KamehamehaAnimation from './components/KamehamehaAnimation';
 import { Home, AboutUs, Schedule, Groomsmen, Bridesmaids, Location, Rsvp } from './pages';
 
 const LandingPage = () => {
@@ -30,7 +31,10 @@ const LandingPage = () => {
         <span className="page-kicker">Will you join us?</span>
         <h2 id="rsvp-heading">We hope you can celebrate with us</h2>
         <p>Please let us know if you&apos;ll be there by completing our RSVP form.</p>
-        <Link className="rsvp-cta-button" to="/rsvp">RSVP now</Link>
+        <div className="rsvp-action-stage">
+          <Link className="rsvp-cta-button" to="/rsvp">RSVP now</Link>
+          <KamehamehaAnimation />
+        </div>
       </section>
     </div>
   );
