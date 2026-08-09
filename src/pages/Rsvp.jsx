@@ -1,48 +1,25 @@
-import React from 'react';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import gokuChiChi from '../assets/images/anime/goku-chichi-wedding.webp';
+import './WeddingPages.css';
 
-const PageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  background-color: #f2e5d7; /* Peach background */
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-`;
-
-const FormWrapper = styled.div`
-  background-color: white; /* White background for the form */
-  padding: 30px; /* Padding around the iframe */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  max-width: 1000px; /* Maximum width for the form */
-  width: 95%; /* Responsive width */
-  max-height: 90%; /* Limit height to 90% of viewport */
-  height: 90%; /* Make the form larger */
-  overflow: hidden; /* Prevent any overflow */
-`;
-
-const FormIframe = styled.iframe`
-  width: 100%; /* Take up all the width of the container */
-  height: 100%; /* Take up all the height of the container */
-  border: none; /* Remove iframe borders */
-  display: block;
-`;
-
-const Rsvp = () => {
-  return (
-    <PageWrapper>
-      <FormWrapper>
-        <FormIframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSdEF3YVa91oZ9yHXJSOzrLXr6DhklBmv0Y-K2XpBaNKN8le2Q/viewform?embedded=true"
-          title="RSVP Form"
-        />
-      </FormWrapper>
-    </PageWrapper>
-  );
-};
+const Rsvp = () => (
+  <main id="main-content" className="rsvp-page">
+    <div className="rsvp-page-heading">
+      <Link className="back-link" to="/#home"><span aria-hidden="true">←</span> Back to the story</Link>
+      <span className="chapter-label">Final chapter</span>
+      <span className="page-kicker">Your reply</span>
+      <h1>Will you join us?</h1>
+      <p>Complete the form below to let Rhys and Teniola know whether you can celebrate with them.</p>
+      <img src={gokuChiChi} alt="" aria-hidden="true" width="1024" height="1536" decoding="async" />
+    </div>
+    <div className="rsvp-form-frame">
+      <span className="form-frame-label">RSVP · 27.02.2027</span>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSdEF3YVa91oZ9yHXJSOzrLXr6DhklBmv0Y-K2XpBaNKN8le2Q/viewform?embedded=true"
+        title="Rhys and Teniola wedding RSVP form"
+      />
+    </div>
+  </main>
+);
 
 export default Rsvp;

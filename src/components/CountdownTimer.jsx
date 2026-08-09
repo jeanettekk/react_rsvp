@@ -1,98 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Box, Typography, Grid } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { wedding } from '../data/wedding';
+
+const weddingTime = new Date(wedding.dateTime).getTime();
+
+const calculateTimeRemaining = () => {
+  const distance = Math.max(0, weddingTime - Date.now());
+
+  return {
+    days: Math.floor(distance / 86400000),
+    hours: Math.floor((distance % 86400000) / 3600000),
+    minutes: Math.floor((distance % 3600000) / 60000),
+    seconds: Math.floor((distance % 60000) / 1000),
+  };
+};
 
 const CountdownTimer = () => {
-  const weddingDate = new Date('2027-02-27T00:00:00').getTime();
-
-  const [timeRemaining, setTimeRemaining] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
+  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime(); // Current time
-      const distance = weddingDate - now; // Time difference
+    const interval = window.setInterval(() => {
+      setTimeRemaining(calculateTimeRemaining());
+    }, 1000);
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      setTimeRemaining({ days, hours, minutes, seconds });
-
-      if (distance <= 0) {
-        clearInterval(interval);
-        setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    }, 1000); // Update every second
-
-    return () => clearInterval(interval);
-  }, [weddingDate]);
+    return () => window.clearInterval(interval);
+  }, []);
 
   return (
-    <Box sx={{ textAlign: 'center', padding: 4 }}>
-      <Grid container spacing={1} justifyContent="center">
-        <Grid item>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 1.7,
-            borderRadius: '8px',
-            boxShadow: 3
-          }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#F4504C' }}>{timeRemaining.days}</Typography>
-            <Typography variant="body1" sx={{ fontFamily: '"Urbanist", sans-serif' }}>Days</Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 1.7,
-            borderRadius: '8px',
-            boxShadow: 3
-          }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#F4504C' }}>{timeRemaining.hours}</Typography>
-            <Typography variant="body1" sx={{ fontFamily: '"Urbanist", sans-serif' }}>Hours</Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 1.7,
-            borderRadius: '8px',
-            boxShadow: 3
-          }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#F4504C' }}>{timeRemaining.minutes}</Typography>
-            <Typography variant="body1" sx={{ fontFamily: '"Urbanist", sans-serif' }}>Minutes</Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 1.7,
-            borderRadius: '8px',
-            boxShadow: 3
-          }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#F4504C' }}>{timeRemaining.seconds}</Typography>
-            <Typography variant="body1" sx={{ fontFamily: '"Urbanist", sans-serif' }}>Seconds</Typography>
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
+    <div className="countdown" aria-label={`Countdown to ${wedding.dateLabel}`}>
+      {Object.entries(timeRemaining).map(([label, value]) => (
+        <div className="countdown-unit" key={label}>
+          <strong>{String(value).padStart(2, '0')}</strong>
+          <span>{label}</span>
+        </div>
+      ))}
+    </div>
   );
 };
 

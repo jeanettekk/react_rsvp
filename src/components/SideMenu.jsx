@@ -1,118 +1,85 @@
-import * as React from 'react';
-import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton, Typography } from '@mui/material';
-import { Menu as MenuIcon, Home as HomeIcon, Face2 as Face2Icon, Face6 as Face6Icon, Favorite as FavoriteIcon, EventNote as EventNoteIcon, LocationOn as LocationOnIcon, Mail as MailIcon } from '@mui/icons-material';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import useMotionSetting from '../hooks/useMotionSetting';
+import { navigation, wedding } from '../data/wedding';
 
 export default function SideMenu() {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const closeButtonRef = useRef(null);
+  const menuButtonRef = useRef(null);
+  const { motionEnabled, toggleMotion } = useMotionSetting();
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
+  useEffect(() => {
+    if (!open) return undefined;
 
-  const menuItems = [
-    { text: 'Home', path: '/#home', Icon: HomeIcon },
-    { text: 'Our Story', path: '/#story', Icon: FavoriteIcon },
-    { text: 'Schedule', path: '/#schedule', Icon: EventNoteIcon },
-    { text: 'Groomsmen', path: '/#groomsmen', Icon: Face6Icon },
-    { text: 'Bridesmaids', path: '/#bridesmaids', Icon: Face2Icon },
-    { text: 'Location', path: '/#location', Icon: LocationOnIcon },
-    { text: 'RSVP', path: '/rsvp', Icon: MailIcon },
-  ];
+    closeButtonRef.current?.focus();
+    document.body.classList.add('drawer-open');
 
-  const DrawerList = (
-    <Box
-      sx={{ width: 290, minHeight: '100%', backgroundColor: '#f8eee4' }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <Box sx={{ px: 3, pt: 4, pb: 3 }}>
-        <Typography
-          sx={{
-            color: '#be0e65',
-            fontFamily: '"Prata", serif',
-            fontSize: '1.65rem',
-          }}
-        >
-          Rhys & Teniola
-        </Typography>
-        <Typography
-          sx={{
-            mt: 0.75,
-            color: '#987280',
-            fontSize: '0.7rem',
-            fontWeight: 700,
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase',
-          }}
-        >
-          Saturday · 27 February 2027
-        </Typography>
-      </Box>
-      <Divider sx={{ mx: 3, borderColor: 'rgba(190, 14, 101, .18)' }} />
-      <List sx={{ px: 2, py: 2 }}>
-        {menuItems.map((item) => (
-          <ListItem key={item.text} disablePadding sx={{ mb: 0.5 }}>
-            <ListItemButton
-              component={Link}
-              to={item.path}
-              sx={{
-                minHeight: 50,
-                borderRadius: '12px',
-                backgroundColor: item.text === 'RSVP' ? '#be0e65' : 'transparent',
-                color: item.text === 'RSVP' ? '#fff' : '#321b27',
-                transition: 'background-color .2s ease, transform .2s ease',
-                '&:hover': {
-                  backgroundColor: item.text === 'RSVP' ? '#a90c59' : 'rgba(190, 14, 101, .09)',
-                  transform: 'translateX(3px)',
-                },
-              }}
-            >
-              <ListItemIcon sx={{ minWidth: 42, color: item.text === 'RSVP' ? '#fdb21e' : '#be0e65' }}>
-                <item.Icon />
-              </ListItemIcon>
-              <ListItemText
-                primary={item.text}
-                primaryTypographyProps={{
-                  fontSize: '0.86rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape);
+      document.body.classList.remove('drawer-open');
+    };
+  }, [open]);
+
+  const closeMenu = () => setOpen(false);
 
   return (
-    <div>
-      
-      <IconButton
-            onClick={toggleDrawer(true)}
-            size="large"
-            edge="start"
-            sx={{ color: '#FFFFFF' }}
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-      <Drawer
-        open={open}
-        onClose={toggleDrawer(false)}
-        PaperProps={{
-          sx: {
-            backgroundColor: '#f8eee4',
-            boxShadow: '12px 0 40px rgba(50, 27, 39, .2)',
-          },
-        }}
+    <div className="mobile-menu">
+      <button
+        ref={menuButtonRef}
+        className="mobile-menu-button"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded={open}
+        aria-controls="mobile-navigation"
+        onClick={() => setOpen(true)}
       >
-        {DrawerList}
-      </Drawer>
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
+      </button>
+
+      <div className={`drawer-backdrop ${open ? 'is-open' : ''}`} aria-hidden={!open} onMouseDown={closeMenu} />
+      <aside
+        id="mobile-navigation"
+        className={`mobile-drawer ${open ? 'is-open' : ''}`}
+        aria-label="Mobile navigation"
+        aria-hidden={!open}
+      >
+        <div className="drawer-cover">
+          <span className="chapter-label">Menu</span>
+          <strong>{wedding.names}</strong>
+          <small>{wedding.dateLabel}</small>
+          <button ref={closeButtonRef} type="button" className="drawer-close" aria-label="Close navigation" onClick={closeMenu} tabIndex={open ? 0 : -1}>×</button>
+        </div>
+        <nav className="drawer-links">
+          {navigation.map(([label, path], index) => (
+            <Link to={path} key={path} onClick={closeMenu} tabIndex={open ? 0 : -1}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              {label}
+            </Link>
+          ))}
+          <Link className="drawer-rsvp" to="/rsvp" onClick={closeMenu} tabIndex={open ? 0 : -1}>RSVP now <span aria-hidden="true">→</span></Link>
+        </nav>
+        <button
+          className="drawer-motion-toggle"
+          type="button"
+          onClick={toggleMotion}
+          aria-pressed={motionEnabled}
+          tabIndex={open ? 0 : -1}
+        >
+          <span className="motion-toggle-dot" aria-hidden="true" />
+          Decorative motion: {motionEnabled ? 'on' : 'off'}
+        </button>
+      </aside>
     </div>
   );
 }

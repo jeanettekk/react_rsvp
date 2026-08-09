@@ -1,32 +1,43 @@
+import gojoMarin from '../assets/images/anime/gojo-marin-wedding.webp';
+import useRevealGroup from '../hooks/useRevealGroup';
+import { groomsmen } from '../data/wedding';
 import './WeddingPages.css';
 
 function Groomsmen() {
-  const party = [
-    { initials: 'BM', name: 'Best Man Name', role: 'Best Man', text: 'Add a short introduction, a favourite memory, or how the groom and best man first met.' },
-    { initials: 'G1', name: 'Groomsman Name', role: 'Groomsman', text: 'Add a few warm words about this groomsman and the role he has played in your story.' },
-    { initials: 'G2', name: 'Groomsman Name', role: 'Groomsman', text: 'Add a fun fact, shared memory, or a short message celebrating your friendship.' },
-  ];
+  const sectionRef = useRevealGroup();
 
   return (
-    <main className="wedding-page">
-      <header className="page-intro">
-        <span className="page-kicker">Meet the gentlemen</span>
-        <h1>The Groomsmen</h1>
-        <p>The friends and family standing beside the groom on the big day. Replace these placeholders with their names, photographs, and stories.</p>
-      </header>
-      <section className="party-grid">
-        {party.map((person, index) => (
-          <article className="party-card" key={`${person.role}-${index}`}>
-            <div className="portrait-placeholder" aria-label="Photograph placeholder">{person.initials}</div>
+    <section id="groomsmen" className="chapter-section cast-section cast-section-groomsmen" aria-labelledby="groomsmen-heading" ref={sectionRef}>
+      <div className="section-shell cast-layout">
+        <header className="section-heading section-heading-left cast-heading" data-reveal>
+          <span className="chapter-label">Chapter 03 · Side A</span>
+          <span className="page-kicker">Meet the gentlemen</span>
+          <h2 id="groomsmen-heading" tabIndex="-1">The Groomsmen</h2>
+          <p>The friends and family standing beside the groom on the big day. Portraits, names, and introductions can be added when they are ready.</p>
+        </header>
+        <div className="cast-guide-crop cast-guide-gojo" data-reveal aria-hidden="true">
+          <img src={gojoMarin} alt="" width="1024" height="1536" loading="lazy" decoding="async" draggable="false" />
+          <span>Meet the cast</span>
+        </div>
+      </div>
+
+      <div className="party-grid section-shell">
+        {groomsmen.map((person, index) => (
+          <article className="party-card" data-reveal key={`${person.role}-${index}`}>
+            <div className="portrait-placeholder" aria-label="Photograph placeholder">
+              <span>{person.initials}</span>
+              <small>Portrait coming soon</small>
+            </div>
             <div className="party-card-body">
-              <h2>{person.name}</h2>
+              <span className="party-card-number">Cast {String(index + 1).padStart(2, '0')}</span>
+              <h3>{person.name}</h3>
               <span className="party-role">{person.role}</span>
               <p>{person.text}</p>
             </div>
           </article>
         ))}
-      </section>
-    </main>
+      </div>
+    </section>
   );
 }
 

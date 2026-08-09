@@ -1,36 +1,55 @@
-// src/pages/Schedule.jsx
+import darknessKazuma from '../assets/images/anime/darkness-kazuma-wedding.webp';
+import useRevealGroup from '../hooks/useRevealGroup';
+import { schedule, wedding } from '../data/wedding';
 import './WeddingPages.css';
 
 const Schedule = () => {
-  const events = [
-    { time: '1:00 PM', title: 'Guest Arrival', text: 'Please arrive with plenty of time to find your seat and settle in before the ceremony begins.' },
-    { time: '1:30 PM', title: 'Wedding Ceremony', text: 'Join us as we exchange our vows at St Mark’s Church. Add any ceremony notes here.' },
-    { time: '3:00 PM', title: 'Drinks & Photographs', text: 'Enjoy refreshments, mingle with other guests, and join us for photographs.' },
-    { time: '5:00 PM', title: 'Wedding Breakfast', text: 'Take your seat for dinner, speeches, and a celebration of good food and great company.' },
-    { time: '8:00 PM', title: 'Evening Celebration', text: 'The dance floor opens. Add details for music, evening guests, food, or the last dance.' },
-  ];
+  const sectionRef = useRevealGroup();
 
   return (
-    <main className="wedding-page">
-      <header className="page-intro">
-        <span className="page-kicker">Saturday · 27 February 2027</span>
-        <h1>The Schedule</h1>
-        <p>A placeholder guide to our wedding day. Final timings and any extra guest information can be added here closer to the celebration.</p>
-      </header>
-      <section className="timeline">
-        {events.map((event) => (
-          <article className="timeline-item" key={`${event.time}-${event.title}`}>
-            <time className="timeline-time">{event.time}</time>
-            <span className="timeline-dot" aria-hidden="true" />
-            <div className="timeline-content">
-              <h2>{event.title}</h2>
+    <section id="schedule" className="chapter-section quest-section" aria-labelledby="schedule-heading" ref={sectionRef}>
+      <div className="quest-header section-shell" data-reveal>
+        <div className="section-heading section-heading-left">
+          <span className="chapter-label">Chapter 02</span>
+          <span className="page-kicker">Wedding day quest log</span>
+          <h2 id="schedule-heading" tabIndex="-1">The Schedule</h2>
+          <p>Follow the checkpoints from the first arrival to the last dance. Final details can be updated here as the day approaches.</p>
+          <div className="quest-date-stamp">
+            <span>Quest date</span>
+            <time dateTime="2027-02-27">{wedding.dateLabel}</time>
+          </div>
+        </div>
+        <div className="quest-guide-wrap">
+          <span className="quest-speech">Quest accepted!</span>
+          <img
+            src={darknessKazuma}
+            alt=""
+            aria-hidden="true"
+            width="1024"
+            height="1536"
+            loading="lazy"
+            decoding="async"
+            draggable="false"
+          />
+        </div>
+      </div>
+
+      <div className="quest-log section-shell">
+        <div className="quest-path" aria-hidden="true" />
+        {schedule.map((event, index) => (
+          <article className="quest-card" data-reveal key={`${event.time}-${event.title}`}>
+            <div className="quest-marker" aria-hidden="true">{String(index + 1).padStart(2, '0')}</div>
+            <div className="quest-card-copy">
+              <time className="quest-time" dateTime={event.dateTime}>{event.time}</time>
+              <h3>{event.title}</h3>
               <p>{event.text}</p>
             </div>
+            <span className="quest-status">Checkpoint</span>
           </article>
         ))}
-      </section>
-    </main>
+      </div>
+    </section>
   );
 };
 
-export default Schedule; // Ensure you have this line to export the component
+export default Schedule;

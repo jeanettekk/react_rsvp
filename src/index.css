@@ -1,110 +1,132 @@
 :root {
-  font-family: "Urbanist", sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: white;
-
+  --paper: #fffaf2;
+  --paper-deep: #f8eee4;
+  --paper-pink: #f3dce5;
+  --ink: #321b27;
+  --ink-soft: #604652;
+  --berry: #be0e65;
+  --berry-dark: #8f084b;
+  --gold: #fdb21e;
+  --gold-pale: #ffe29a;
+  --coral: #d83b45;
+  --muted: #78616b;
+  --muted-dark: #5f4752;
+  --display-font: "Prata", Georgia, serif;
+  --body-font: "Urbanist", Arial, sans-serif;
+  --nav-height: 82px;
+  --nav-height-mobile: 64px;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--body-font);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-family: "Prata", serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-a, h2, h3, h4, h5, h6, body1 {
-
-  font-family: "Urbanist", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 300;
-  font-style: normal;
-  color: black;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
+* { box-sizing: border-box; }
 
 html {
+  min-width: 320px;
+  background: var(--paper);
   scroll-behavior: smooth;
 }
 
-.app-content {
-  padding-top: 76px;
-}
-
-.scroll-section {
-  scroll-margin-top: 76px;
-}
-
-@media (max-width: 1103px) {
-  .app-content {
-    padding-top: 56px;
-  }
-
-  .scroll-section {
-    scroll-margin-top: 56px;
-  }
-}
-
-#root {
-  width: 100%;
+body {
+  min-width: 320px;
   min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--paper);
+  color: var(--ink);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+body.drawer-open { overflow: hidden; }
+
+button,
+input,
+textarea,
+select { font: inherit; }
+
+button { cursor: pointer; }
+
+a { color: inherit; }
+
+img { max-width: 100%; }
+
+h1,
+h2,
+h3,
+p { text-wrap: pretty; }
+
+#root { width: 100%; min-height: 100vh; }
+
+.app-content { padding-top: var(--nav-height); }
+
+.chapter-section,
+.rsvp-cta { scroll-margin-top: var(--nav-height); }
+
+.skip-link {
+  position: fixed;
+  z-index: 2000;
+  top: 12px;
+  left: 12px;
+  padding: 11px 16px;
+  border: 2px solid var(--ink);
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: none;
+  transform: translateY(-160%);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.skip-link:focus { transform: translateY(0); }
+
+:focus-visible {
+  outline: 3px solid #1578b7;
+  outline-offset: 4px;
 }
 
-.bg-image {
-  position: absolute;
-  top: 0;
-  height: 500px;
-  width: 100%;
-  object-fit: cover;
-  object-position: 100%;
+h1:focus,
+h2:focus { outline: none; }
+
+.route-loading {
+  display: grid;
+  min-height: calc(100vh - var(--nav-height));
+  place-items: center;
+  background: var(--paper);
+  color: var(--berry-dark);
+  font-family: var(--display-font);
+  font-size: 1.3rem;
+}
+
+.will-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .65s ease, transform .65s cubic-bezier(.2, .75, .25, 1);
+}
+
+.will-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+[data-motion="off"] { scroll-behavior: auto; }
+[data-motion="off"] .will-reveal { opacity: 1; transform: none; transition: none; }
+[data-motion="off"] *,
+[data-motion="off"] *::before,
+[data-motion="off"] *::after { scroll-behavior: auto !important; }
+
+@media (max-width: 959px) {
+  .app-content { padding-top: var(--nav-height-mobile); }
+  .chapter-section,
+  .rsvp-cta { scroll-margin-top: var(--nav-height-mobile); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .will-reveal { opacity: 1; transform: none; }
 }
