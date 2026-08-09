@@ -270,25 +270,25 @@
   }
 
   .rsvp-kamehameha-scene {
-    --charge-origin-right: 43px;
-    --charge-origin-top: 55px;
-    --fire-origin-right: 108px;
-    --fire-origin-top: 43px;
+    --charge-origin-right: 35px;
+    --charge-origin-top: 49px;
+    --fire-origin-right: 92px;
+    --fire-origin-top: 38px;
   }
 
   .rsvp-goku {
     top: 5px;
     right: -25px;
-    height: 105px;
+    height: 92px;
   }
 
   .rsvp-kamehameha-orb {
-    width: 22px;
+    width: 19px;
   }
 
   .rsvp-kamehameha-beam {
-    top: calc(var(--fire-origin-top) - 7px);
-    height: 14px;
+    top: calc(var(--fire-origin-top) - 6px);
+    height: 12px;
   }
 }
 
