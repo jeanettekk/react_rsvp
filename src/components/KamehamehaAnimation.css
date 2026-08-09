@@ -60,13 +60,18 @@
 }
 
 .rsvp-goku-charge {
-  animation: rsvp-goku-charge 7s ease-in-out infinite;
+  animation: rsvp-goku-charge 7s linear infinite;
+}
+
+.rsvp-goku-teleport {
+  opacity: 0;
+  animation: rsvp-goku-teleport 7s linear infinite;
 }
 
 .rsvp-goku-fire {
   opacity: 0;
   transform-origin: 70% 55%;
-  animation: rsvp-goku-fire 7s ease-out infinite;
+  animation: rsvp-goku-fire 7s linear infinite;
 }
 
 .rsvp-kamehameha-orb {
@@ -127,16 +132,63 @@
 }
 
 @keyframes rsvp-goku-charge {
-  0%, 8% { opacity: 0; transform: translateX(38px) scale(.94); }
-  15%, 46% { opacity: 1; transform: translateX(0) scale(1); }
-  49%, 100% { opacity: 0; transform: translateX(0) scale(1); }
+  0%, 10.8% { opacity: 0; }
+  10.81%, 48% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+    transform: translateY(0) scaleY(1);
+  }
+  48.01%, 100% { opacity: 0; }
 }
 
 @keyframes rsvp-goku-fire {
-  0%, 47% { opacity: 0; transform: translateX(18px) scale(.98); }
-  50%, 69% { opacity: 1; transform: translateX(0) scale(1); }
-  73% { opacity: 1; transform: translateX(7px) scale(.98); }
-  80%, 100% { opacity: 0; transform: translateX(28px) scale(.96); }
+  0%, 48% { opacity: 0; }
+  48.01%, 69.99% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+    transform: translate(0, 0) scaleY(1);
+  }
+  70%, 100% { opacity: 0; }
+}
+
+@keyframes rsvp-goku-teleport {
+  0%, 6.99% { opacity: 0; }
+  7%, 7.8% {
+    opacity: 1;
+    filter: brightness(2.2) blur(1.4px);
+    transform: translateY(-30px) scaleY(1.25);
+  }
+  7.81%, 8.2% { opacity: 0; }
+  8.21%, 9% {
+    opacity: 1;
+    filter: brightness(1.7) blur(.7px);
+    transform: translateY(10px) scaleY(.92);
+  }
+  9.01%, 9.4% { opacity: 0; }
+  9.41%, 10.8% {
+    opacity: 1;
+    filter: brightness(1.15) blur(0);
+    transform: translateY(0) scaleY(1);
+  }
+  10.81%, 69.99% { opacity: 0; }
+  70%, 70.8% {
+    opacity: 1;
+    filter: brightness(1.2) blur(0);
+    transform: translateY(0) scaleY(1);
+  }
+  70.81%, 71.2% { opacity: 0; }
+  71.21%, 72% {
+    opacity: 1;
+    filter: brightness(1.8) blur(.7px);
+    transform: translateY(-10px) scaleY(1.08);
+  }
+  72.01%, 72.4% { opacity: 0; }
+  72.41%, 74% {
+    opacity: 1;
+    filter: brightness(2.3) blur(1.6px);
+    transform: translateY(32px) scaleY(1.3);
+  }
+  74.01%, 100% { opacity: 0; }
 }
 
 @keyframes rsvp-kamehameha-orb {
@@ -155,6 +207,18 @@
     right: var(--charge-origin-right);
     opacity: 1;
     transform: translate(50%, -50%) scale(1);
+  }
+  47% {
+    top: var(--charge-origin-top);
+    right: var(--charge-origin-right);
+    opacity: 1;
+    transform: translate(50%, -50%) scale(1);
+  }
+  48% {
+    top: var(--fire-origin-top);
+    right: var(--fire-origin-right);
+    opacity: 1;
+    transform: translate(50%, -50%) scale(1.25);
   }
   50% {
     top: var(--fire-origin-top);

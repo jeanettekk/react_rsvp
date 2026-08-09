@@ -1,9 +1,16 @@
 import gokuCharge from '../assets/images/goku-kamehameha-charge.webp';
 import gokuFire from '../assets/images/goku-kamehameha-fire.webp';
+import gokuTeleport from '../assets/images/goku-teleport.webp';
 import './KamehamehaAnimation.css';
 
 const KamehamehaAnimation = () => (
   <div className="rsvp-kamehameha-scene" aria-hidden="true">
+    <img
+      src={gokuTeleport}
+      alt=""
+      className="rsvp-goku rsvp-goku-teleport"
+      draggable="false"
+    />
     <img
       src={gokuCharge}
       alt=""
