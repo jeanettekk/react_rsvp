@@ -1,4 +1,4 @@
-import gojoMarin from '../assets/images/anime/gojo-marin-wedding.webp';
+import wakanaGojo from '../assets/images/anime/wakana-gojo-wedding.webp';
 import useRevealGroup from '../hooks/useRevealGroup';
 import { groomsmen } from '../data/wedding';
 import './WeddingPages.css';
@@ -15,10 +15,18 @@ function Groomsmen() {
           <h2 id="groomsmen-heading" tabIndex="-1">The Groomsmen</h2>
           <p>The friends and family standing beside the groom on the big day. Portraits, names, and introductions can be added when they are ready.</p>
         </header>
-        <div className="cast-guide-crop cast-guide-gojo" data-reveal aria-hidden="true">
-          <img src={gojoMarin} alt="" width="1024" height="1536" loading="lazy" decoding="async" draggable="false" />
-          <span>Meet the cast</span>
-        </div>
+        <figure className="cast-character-panel cast-character-gojo" data-reveal>
+          <img
+            src={wakanaGojo}
+            alt="Wakana Gojo dressed for a wedding"
+            width="862"
+            height="1824"
+            loading="lazy"
+            decoding="async"
+            draggable="false"
+          />
+          <figcaption>Wakana Gojo · Guest guide</figcaption>
+        </figure>
       </div>
 
       <div className="party-grid section-shell">

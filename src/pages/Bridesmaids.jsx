@@ -1,4 +1,4 @@
-import gojoMarin from '../assets/images/anime/gojo-marin-wedding.webp';
+import marinKitagawa from '../assets/images/anime/marin-kitagawa-wedding.webp';
 import useRevealGroup from '../hooks/useRevealGroup';
 import { bridesmaids } from '../data/wedding';
 import './WeddingPages.css';
@@ -15,10 +15,18 @@ function Bridesmaids() {
           <h2 id="bridesmaids-heading" tabIndex="-1">The Bridesmaids</h2>
           <p>The friends and family standing beside the bride on the big day. Portraits, names, and introductions can be added when they are ready.</p>
         </header>
-        <div className="cast-guide-crop cast-guide-marin" data-reveal aria-hidden="true">
-          <img src={gojoMarin} alt="" width="1024" height="1536" loading="lazy" decoding="async" draggable="false" />
-          <span>Scene stealers</span>
-        </div>
+        <figure className="cast-character-panel cast-character-marin" data-reveal>
+          <img
+            src={marinKitagawa}
+            alt="Marin Kitagawa dressed for a wedding"
+            width="864"
+            height="1821"
+            loading="lazy"
+            decoding="async"
+            draggable="false"
+          />
+          <figcaption>Marin Kitagawa · Guest guide</figcaption>
+        </figure>
       </div>
 
       <div className="party-grid section-shell">

@@ -262,7 +262,10 @@
 
 @media (max-width: 560px) {
   .rsvp-action-stage {
+    width: 100%;
     min-height: 115px;
+    margin-right: 0;
+    margin-left: 0;
   }
 
   .rsvp-action-stage .rsvp-cta-button {
@@ -298,6 +301,7 @@
   }
 
   .rsvp-action-stage .rsvp-cta-button {
+    margin-top: 0;
     animation: none;
   }
 

@@ -1,4 +1,3 @@
-import darknessKazuma from '../assets/images/anime/darkness-kazuma-wedding.webp';
 import useRevealGroup from '../hooks/useRevealGroup';
 import { venues } from '../data/wedding';
 import './WeddingPages.css';
@@ -37,10 +36,6 @@ const Location = () => {
             </div>
           </article>
         ))}
-        <div className="location-guide" aria-hidden="true" data-reveal>
-          <img src={darknessKazuma} alt="" width="1024" height="1536" loading="lazy" decoding="async" draggable="false" />
-          <span>Next stop →</span>
-        </div>
       </div>
     </section>
   );
