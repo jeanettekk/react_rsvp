@@ -11,7 +11,7 @@ const Location = () => {
         <span className="chapter-label">Chapter 04</span>
         <span className="page-kicker">Two destinations · one adventure</span>
         <h2 id="location-heading" tabIndex="-1">Find Your Way</h2>
-        <p>Everything you need to travel from the ceremony to the celebration. Open either map for full directions.</p>
+        <p>Everything you need to travel from the ceremony to the celebration.</p>
       </header>
 
       <div className="venue-route section-shell">
@@ -28,7 +28,7 @@ const Location = () => {
               <h3>{venue.name}</h3>
               <p>{venue.address}</p>
               <a className="directions-link" href={venue.directions} target="_blank" rel="noreferrer">
-                Open in Google Maps <span aria-hidden="true">↗</span>
+                Open in Google Maps
               </a>
             </div>
             <div className="venue-map-wrap">
