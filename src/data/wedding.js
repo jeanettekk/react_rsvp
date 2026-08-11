@@ -21,24 +21,38 @@ export const navigation = [
   ['Locations', '/#location'],
 ];
 
+export const storyBabyPanel = {
+  number: '00',
+  title: 'Before It All Began',
+  label: 'Origins',
+  bride: { alt: 'Teniola as a baby', caption: 'The Bride' },
+  groom: { alt: 'Rhys as a baby', caption: 'The Groom' },
+};
+
 export const storyChapters = [
   {
     number: '01',
     title: 'How We Met',
     label: 'The opening scene',
     text: 'Add the story of where it all began—the first hello, the first laugh, and the moment you knew this meeting was special.',
+    photoAlt: 'How we met',
+    photoCaption: 'The first hello',
   },
   {
     number: '02',
     title: 'Our Favourite Chapter',
     label: 'The adventure so far',
     text: 'Share a memorable adventure, a meaningful milestone, or one of the little everyday moments that brought you closer together.',
+    photoAlt: 'Our favourite memory together',
+    photoCaption: 'A moment to remember',
   },
   {
     number: '03',
     title: 'The Proposal',
     label: 'The page-turner',
     text: 'Tell your guests how the question was asked, where it happened, and what made that unforgettable day uniquely yours.',
+    photoAlt: 'The proposal',
+    photoCaption: 'She said yes!',
   },
 ];
 

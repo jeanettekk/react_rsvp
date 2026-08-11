@@ -179,6 +179,10 @@
 .story-panels { position: absolute; z-index: 2; inset: 7% 28% 8% max(28px, calc((100vw - 1320px) / 2)); max-width: 880px; }
 .manga-story-panel { position: absolute; padding: clamp(22px, 3vw, 38px); border: 3px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: 8px 8px 0 var(--ink); opacity: 0; transform: translateY(34px) rotate(-1deg); transition: opacity .62s ease, transform .62s cubic-bezier(.2,.8,.2,1); }
 .manga-story-panel::after { position: absolute; z-index: -1; inset: 0; background: radial-gradient(circle, rgba(190,14,101,.11) 1px, transparent 1.3px); background-size: 8px 8px; content: ""; opacity: .42; }
+
+/* Chapter 00 — baby origins panel */
+.manga-story-panel-0 { top: 2%; left: 2%; width: 52%; transform: translateY(-28px) rotate(-1.5deg); }
+
 .manga-story-panel-1 { top: 0; left: 0; width: 56%; }
 .manga-story-panel-2 { top: 32%; right: 0; width: 57%; transform: translateX(38px) rotate(1deg); }
 .manga-story-panel-3 { bottom: 0; left: 5%; width: 62%; }
@@ -189,6 +193,92 @@
 .speech-bubble { position: absolute; top: -32px; left: -75px; padding: 13px 16px; border: 2px solid var(--ink); border-radius: 50%; background: white; font-size: .62rem; font-weight: 900; text-transform: uppercase; transform: rotate(-8deg); }
 .speech-bubble::after { position: absolute; right: 14px; bottom: -5px; width: 16px; height: 16px; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); background: white; content: ""; transform: rotate(30deg); }
 .manga-story-finale { top: 17%; right: 2%; bottom: 15%; left: 3%; display: flex; flex-direction: column; justify-content: center; background: var(--berry); color: white; text-align: center; transform: scale(.88) rotate(-1deg); }
+
+/* Panel photo layout */
+.panel-content-with-photo { display: flex; position: relative; z-index: 1; gap: 16px; align-items: flex-start; }
+.panel-text-block { flex: 1; min-width: 0; position: relative; }
+.panel-text-block h3 { margin: 0 0 10px; font-family: var(--display-font); font-size: clamp(1.35rem, 2.2vw, 2.3rem); font-weight: 400; line-height: 1.08; }
+.panel-text-block p { margin: 0; color: var(--muted-dark); font-size: .94rem; line-height: 1.65; }
+
+/* Clickable photo button inside panel */
+.panel-photo-wrap {
+  display: block;
+  flex-shrink: 0;
+  width: min(120px, 32%);
+  padding: 0;
+  border: 3px solid var(--ink);
+  background: none;
+  box-shadow: 5px 5px 0 var(--ink);
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transform: rotate(var(--photo-rotate, 2deg));
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.panel-photo-wrap::after {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(50,27,39,.16) 1px, transparent 1.3px);
+  background-size: 7px 7px;
+  content: "";
+  opacity: .38;
+  pointer-events: none;
+}
+.panel-photo-wrap:hover { transform: rotate(0deg) scale(1.03); box-shadow: 7px 7px 0 var(--ink); }
+.panel-photo-wrap img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: saturate(.82) contrast(1.05); }
+.panel-photo-label { display: block; padding: 5px 6px 6px; border-top: 2px solid var(--ink); background: var(--paper-deep); color: var(--berry-dark); font-size: .52rem; font-weight: 900; letter-spacing: .12em; text-align: center; text-transform: uppercase; }
+
+/* Baby panel specifics */
+.baby-panel-photos { display: flex; position: relative; z-index: 1; gap: 14px; margin-top: 12px; }
+.baby-photo-cell { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; }
+.panel-photo-wrap-baby { width: 100%; }
+.panel-photo-wrap-baby img { aspect-ratio: 3 / 4; }
+.baby-photo-caption { color: var(--berry-dark); font-size: .58rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+
+/* Lightbox */
+.story-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(50, 27, 39, .92);
+  padding: 24px;
+  backdrop-filter: blur(4px);
+  animation: lightbox-in .22s ease;
+}
+@keyframes lightbox-in { from { opacity: 0; } to { opacity: 1; } }
+.story-lightbox-img {
+  max-width: min(90vw, 860px);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border: 4px solid var(--ink);
+  box-shadow: 12px 12px 0 var(--gold);
+  object-fit: contain;
+  filter: saturate(.9) contrast(1.04);
+}
+.story-lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--gold);
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--gold);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1;
+  transition: background .18s ease, color .18s ease;
+}
+.story-lightbox-close:hover { background: var(--gold); color: var(--ink); }
 .manga-story-finale::after { z-index: 0; background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 4deg, rgba(255,255,255,.08) 4deg 4.5deg); opacity: 1; }
 .manga-story-finale .panel-label { color: var(--gold); }
 .manga-story-finale h3 { font-size: clamp(2.4rem, 5vw, 5rem); }
@@ -203,16 +293,26 @@
 .story-progress b { display: block; width: 100%; height: 100%; background: var(--berry); transform: scaleX(var(--story-progress)); transform-origin: left; }
 
 @media (min-width: 901px) {
+  /* Stage 0 → baby panel appears first */
+  .story-stage-0 .manga-story-panel-0,
+  .story-stage-1 .manga-story-panel-0,
   .story-stage-1 .manga-story-panel-1,
+  .story-stage-2 .manga-story-panel-0,
   .story-stage-2 .manga-story-panel-1,
   .story-stage-2 .manga-story-panel-2,
+  .story-stage-3 .manga-story-panel-0,
   .story-stage-3 .manga-story-panel-1,
   .story-stage-3 .manga-story-panel-2,
-  .story-stage-3 .manga-story-panel-3 { opacity: 1; transform: translate(0) rotate(0); }
+  .story-stage-3 .manga-story-panel-3,
+  .story-stage-4 .manga-story-panel-0,
   .story-stage-4 .manga-story-panel-1,
   .story-stage-4 .manga-story-panel-2,
-  .story-stage-4 .manga-story-panel-3 { opacity: .12; transform: scale(.96); }
-  .story-stage-4 .manga-story-finale { opacity: 1; transform: scale(1) rotate(0); }
+  .story-stage-4 .manga-story-panel-3 { opacity: 1; transform: translate(0) rotate(0); }
+  .story-stage-5 .manga-story-panel-0,
+  .story-stage-5 .manga-story-panel-1,
+  .story-stage-5 .manga-story-panel-2,
+  .story-stage-5 .manga-story-panel-3 { opacity: .12; transform: scale(.96); }
+  .story-stage-5 .manga-story-finale { opacity: 1; transform: scale(1) rotate(0); }
 }
 
 /* Schedule / quest */
@@ -441,10 +541,14 @@
   .manga-story-panel:nth-child(n) { margin-inline: 0; }
   .panel-number { top: -16px; font-size: 4rem; }
   .manga-story-panel h3 { font-size: 1.75rem; }
+  .panel-text-block h3 { font-size: 1.5rem; }
   .manga-story-finale { min-height: 210px; }
   .manga-story-finale h3 { font-size: 2.2rem; }
   .speech-bubble { display: inline-block; position: relative; top: auto; right: auto; left: auto; margin-top: 16px; border-radius: 999px; transform: none; }
   .speech-bubble::after { display: none; }
+  .panel-content-with-photo { gap: 12px; }
+  .panel-photo-wrap { width: min(100px, 30%); }
+  .baby-panel-photos { gap: 10px; }
 
   .quest-section { padding: 72px 0; }
   .quest-header .section-heading h2 { font-size: 3.45rem; }
@@ -503,8 +607,9 @@
   [data-motion="off"] .story-scroll-stage { height: auto; }
   [data-motion="off"] .story-sticky-canvas { position: relative; top: auto; height: auto; min-height: 0; padding: 60px 24px; }
   [data-motion="off"] .story-guide-wrap { position: relative; right: auto; width: min(340px, 70vw); height: 400px; margin: 0 auto; }
-  [data-motion="off"] .story-panels { display: grid; position: relative; inset: auto; gap: 24px; max-width: 760px; margin: 0 auto; }
+  [data-motion="off"] .story-panels { display: grid; position: relative; inset: auto; gap: 24px; max-width: 800px; margin: 0 auto; }
   [data-motion="off"] .manga-story-panel { position: relative; inset: auto; width: auto; opacity: 1; transform: none; }
+  [data-motion="off"] .manga-story-panel-0 { transform: none; }
   [data-motion="off"] .story-progress { display: none; }
 }
 
@@ -512,7 +617,8 @@
   .story-scroll-stage { height: auto; }
   .story-sticky-canvas { position: relative; top: auto; height: auto; min-height: 0; padding: 60px 24px; }
   .story-guide-wrap { position: relative; right: auto; width: min(340px, 70vw); height: 400px; margin: 0 auto; }
-  .story-panels { display: grid; position: relative; inset: auto; gap: 24px; max-width: 760px; margin: 0 auto; }
+  .story-panels { display: grid; position: relative; inset: auto; gap: 24px; max-width: 800px; margin: 0 auto; }
   .manga-story-panel { position: relative; inset: auto; width: auto; opacity: 1; transform: none; }
+  .manga-story-panel-0 { transform: none; }
   .story-progress { display: none; }
 }
