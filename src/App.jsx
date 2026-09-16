@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import AppNavbar from './components/AppNavbar';
+import AppFooter from './components/AppFooter';
 import KamehamehaAnimation from './components/KamehamehaAnimation';
 import { Home, AboutUs, Schedule, Groomsmen, Bridesmaids, Location, Rsvp } from './pages';
 
@@ -14,9 +15,21 @@ const LandingPage = () => {
     }
 
     const target = document.querySelector(hash);
-    if (target) {
-      requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth' }));
+    if (!target) return;
+
+    if (hash === '#story' && window.matchMedia('(min-width: 901px)').matches) {
+      const stage = target.querySelector('.story-scroll-stage');
+      if (stage) {
+        requestAnimationFrame(() => {
+          const travel = Math.max(1, stage.offsetHeight - window.innerHeight);
+          const top = stage.getBoundingClientRect().top + window.scrollY + travel * 0.03;
+          window.scrollTo({ top, behavior: 'smooth' });
+        });
+        return;
+      }
     }
+
+    requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth' }));
   }, [hash]);
 
   return (
@@ -54,6 +67,7 @@ const App = () => (
         <Route path="/location" element={<Navigate to="/#location" replace />} />
       </Routes>
     </div>
+    <AppFooter />
   </>
 );
 
