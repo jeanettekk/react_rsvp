@@ -1,36 +1,60 @@
 // src/pages/Schedule.jsx
 import './WeddingPages.css';
+import chopperSticker from '../assets/images/location-chopper.gif';
+import merryGoSticker from '../assets/images/location-merry-go.gif';
+import crewSticker from '../assets/images/location-one-piece.gif';
 
-const Schedule = () => {
-  const events = [
-    { time: '1:00 PM', title: 'Guest Arrival', text: 'Please arrive with plenty of time to find your seat and settle in before the ceremony begins.' },
-    { time: '1:30 PM', title: 'Wedding Ceremony', text: 'Join us as we exchange our vows at St Mark’s Church. Add any ceremony notes here.' },
-    { time: '3:00 PM', title: 'Drinks & Photographs', text: 'Enjoy refreshments, mingle with other guests, and join us for photographs.' },
-    { time: '5:00 PM', title: 'Wedding Breakfast', text: 'Take your seat for dinner, speeches, and a celebration of good food and great company.' },
-    { time: '8:00 PM', title: 'Evening Celebration', text: 'The dance floor opens. Add details for music, evening guests, food, or the last dance.' },
-  ];
-
-  return (
-    <main className="wedding-page">
-      <header className="page-intro">
-        <span className="page-kicker">Saturday · 27 February 2027</span>
-        <h1>The Schedule</h1>
-        <p>A placeholder guide to our wedding day. Final timings and any extra guest information can be added here closer to the celebration.</p>
-      </header>
-      <section className="timeline">
-        {events.map((event) => (
-          <article className="timeline-item" key={`${event.time}-${event.title}`}>
-            <time className="timeline-time">{event.time}</time>
-            <span className="timeline-dot" aria-hidden="true" />
-            <div className="timeline-content">
-              <h2>{event.title}</h2>
-              <p>{event.text}</p>
-            </div>
-          </article>
-        ))}
-      </section>
-    </main>
-  );
+const locationStickers = {
+  Church: chopperSticker,
+  Travel: merryGoSticker,
+  Theatre: crewSticker,
 };
 
-export default Schedule; // Ensure you have this line to export the component
+const events = [
+  { time: '13:00 – 13:30', activity: 'Guest arrival and seating', location: 'Church' },
+  { time: '13:30 – 14:00', activity: 'Wedding ceremony', location: 'Church', highlight: true },
+  { time: '16:00 – 16:30', activity: 'Guests travel to the reception', location: 'Travel' },
+  { time: '16:30 – 17:00', activity: 'Guests arrival and seating', location: 'Theatre' },
+  { time: '17:30 – 17:40', activity: 'Bride and groom entrance', location: 'Theatre', highlight: true },
+  { time: '17:45 – 19:30', activity: 'Buffet dinner and games', location: 'Theatre' },
+  { time: '19:30 – 19:50', activity: 'Wedding speeches', location: 'Theatre' },
+  { time: '20:00 – 23:00', activity: 'First dance and party', location: 'Theatre', highlight: true },
+  { time: '23:00', activity: 'Celebration ends', location: 'Theatre' },
+];
+
+const Schedule = () => (
+  <main className="wedding-page schedule-page">
+    <header className="page-intro">
+      <span className="page-kicker">Saturday · 27 February 2027</span>
+      <h1>The Schedule</h1>
+      <p>Everything you need to know for celebrating with us, from the ceremony to the final dance.</p>
+    </header>
+
+    <section className="timeline" aria-label="Wedding day schedule">
+      {events.map((event) => (
+        <article
+          className={`timeline-item${event.highlight ? ' timeline-item--highlight' : ''}`}
+          key={`${event.time}-${event.activity}`}
+        >
+          <time className="timeline-time">{event.time}</time>
+          <span className="timeline-dot" aria-hidden="true" />
+          <div className="timeline-content">
+            <h2>{event.activity}</h2>
+            <div
+              className={`schedule-location-wrap schedule-location-wrap--${event.location.toLowerCase()}`}
+              tabIndex="0"
+              aria-label={`${event.location} location`}
+            >
+              <img className="schedule-location-sticker" src={locationStickers[event.location]} alt="" aria-hidden="true" />
+              <span className={`schedule-location schedule-location--${event.location.toLowerCase()}`}>
+                {event.location}
+              </span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </section>
+  </main>
+);
+
+export default Schedule;
