@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import PropTypes from 'prop-types';
 import './Lightbox.css';
 
-function Lightbox({ images = [], initialIndex = 0, open, onClose, name }) {
+function Lightbox({ images = [], initialIndex = 0, open, onClose, name = '' }) {
   const [index, setIndex] = useState(initialIndex);
   const touchStartX = useRef(0);
 
@@ -76,5 +77,13 @@ function Lightbox({ images = [], initialIndex = 0, open, onClose, name }) {
     </div>
   );
 }
+
+Lightbox.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  initialIndex: PropTypes.number,
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  name: PropTypes.string,
+};
 
 export default Lightbox;

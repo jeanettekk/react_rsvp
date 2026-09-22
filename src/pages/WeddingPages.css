@@ -1,6 +1,6 @@
 .wedding-page {
   min-height: calc(100vh - 72px);
-  padding: 72px 24px 80px;
+  padding: 45px 24px 80px;
   box-sizing: border-box;
   color: #321b27;
   background:
@@ -377,11 +377,26 @@
   padding-bottom: 38px;
 }
 
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
 .timeline-time {
-  padding-top: 22px;
+  display: grid;
+  align-self: center;
+  justify-items: end;
+  gap: 4px;
   color: #be0e65;
+  font-variant-numeric: tabular-nums;
   font-weight: 700;
+  line-height: 1;
   text-align: right;
+}
+
+.timeline-time-divider {
+  width: 64px;
+  height: 1px;
+  background: rgba(190, 14, 101, 0.4);
 }
 
 .timeline-dot {
@@ -426,6 +441,10 @@
   border-color: rgba(253, 178, 30, 0.42);
   background: linear-gradient(100deg, rgba(255, 250, 239, 0.96), rgba(255, 255, 255, 0.84));
   box-shadow: 0 12px 34px rgba(244, 80, 76, 0.1);
+}
+
+.timeline-item--highlight .timeline-content h2 {
+  color: #be0e65;
 }
 
 .timeline-item--highlight .timeline-dot {
@@ -663,7 +682,20 @@
 .portrait-wrap:focus-visible span { opacity: 1; transform: translateY(0); }
 
 .party-card-body {
+  position: relative;
+  isolation: isolate;
   padding: 25px 22px 28px;
+}
+
+.party-card-body::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(circle, rgba(190, 14, 101, .11) 1px, transparent 1.3px);
+  background-size: 8px 8px;
+  content: "";
+  opacity: .42;
+  pointer-events: none;
 }
 
 .party-card-body p {
@@ -692,7 +724,8 @@
 .home-hero { display: grid; grid-template-columns: minmax(0, .9fr) minmax(380px, 1.1fr); width: min(1180px, 100%); margin: 0 auto; overflow: hidden; border: 1px solid rgba(190, 14, 101, .14); border-radius: 30px; background: rgba(255, 255, 255, .78); box-shadow: 0 24px 65px rgba(77, 35, 54, .12); }
 .home-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(36px, 6vw, 76px); text-align: center; }
 .home-copy h1 { margin: 0 0 20px; color: #be0e65; font-size: clamp(2.7rem, 5vw, 4.8rem); }
-.home-date { margin: 0; color: #f4504c; font-size: 1.05rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.home-date { display: flex; flex-wrap: wrap; justify-content: center; gap: .35em; margin: 0; color: #f4504c; font-size: 1.05rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.home-date-time { display: inline-flex; gap: .35em; white-space: nowrap; }
 .home-venue { margin: 36px 0 12px; padding: 24px 0; border-top: 1px solid rgba(190, 14, 101, .18); border-bottom: 1px solid rgba(190, 14, 101, .18); }
 .home-venue span, .venue-note { color: #987280; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
 .home-venue strong { display: block; margin: 8px 0; color: #321b27; font-family: "Prata", serif; font-size: 1.45rem; font-weight: 400; }
@@ -722,7 +755,136 @@
 .rsvp-cta-button { display: inline-block; padding: 14px 34px; border: 2px solid #fdb21e; border-radius: 999px; background: #fdb21e; color: #321b27; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transition: transform .2s ease, background .2s ease; }
 .rsvp-cta-button:hover { transform: translateY(-2px); background: #fdc149; color: #321b27; }
 
+.prologue-section {
+  --prologue-ink: #321b27;
+  --prologue-muted: #5f4752;
+  --prologue-berry: #be0e65;
+  --prologue-berry-dark: #8f084b;
+  --prologue-gold: #fdb21e;
+  --prologue-paper: #fffaf2;
+  position: relative;
+  padding: 72px 24px 80px;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(253, 178, 30, 0.18), transparent 22rem),
+    radial-gradient(circle at 92% 88%, rgba(190, 14, 101, 0.1), transparent 25rem),
+    #f8eee4;
+  color: var(--prologue-ink);
+}
+
+.prologue-portraits {
+  display: grid;
+  grid-auto-rows: 1fr;
+  gap: clamp(36px, 5vw, 58px);
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.prologue-card {
+  display: grid;
+  position: relative;
+  grid-template-columns: minmax(280px, .88fr) minmax(0, 1.12fr);
+  grid-template-areas: "photo note";
+  min-height: 410px;
+  height: 100%;
+  margin: 0;
+  border: 3px solid var(--prologue-ink);
+  background: var(--prologue-paper);
+  box-shadow: 9px 9px 0 var(--prologue-ink);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.prologue-card-groom { transform: rotate(-.65deg); }
+.prologue-card-bride { grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr); grid-template-areas: "note photo"; transform: rotate(.65deg); }
+.prologue-card:hover { transform: translateY(-4px) rotate(0); box-shadow: 13px 13px 0 var(--prologue-ink); }
+
+.prologue-photo-wrap {
+  position: relative;
+  grid-area: photo;
+  min-width: 0;
+  overflow: hidden;
+  background: #ead9ca;
+}
+
+.prologue-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.prologue-card-groom .prologue-photo { object-position: center 24%; }
+.prologue-card-bride .prologue-photo { object-position: center center; }
+
+.prologue-photo-label {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  padding: 7px 11px;
+  border: 2px solid var(--prologue-ink);
+  background: var(--prologue-gold);
+  color: var(--prologue-ink);
+  box-shadow: 3px 3px 0 var(--prologue-ink);
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transform: rotate(-2deg);
+}
+
+.prologue-handwritten-quote {
+  display: flex;
+  position: relative;
+  grid-area: note;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  padding: clamp(30px, 4vw, 52px);
+  border: 2px solid var(--prologue-ink);
+  background-color: var(--prologue-paper);
+  background-image: repeating-linear-gradient(to bottom, transparent 0 33px, rgba(190, 14, 101, .12) 33px 34px);
+  box-shadow: 5px 5px 0 rgba(50, 27, 39, .18);
+  transform: rotate(-1deg);
+}
+
+.prologue-handwritten-quote::before {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 76px;
+  height: 23px;
+  background: rgba(253, 178, 30, .62);
+  content: "";
+  transform: translateX(-50%) rotate(2deg);
+}
+
+.prologue-card-bride .prologue-handwritten-quote { transform: rotate(1deg); }
+
+.handwritten-text {
+  margin: 0 0 18px;
+  color: var(--prologue-ink);
+  font-family: "Caveat", cursive;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.handwritten-attribution {
+  display: block;
+  color: var(--prologue-berry-dark);
+  font-family: "Caveat", cursive;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-style: italic;
+  font-weight: 600;
+  text-align: right;
+}
+
 @media (min-width: 901px) {
+  .schedule-page .timeline { transform: translateX(-58px); }
+  .schedule-page .timeline-item { grid-template-columns: 95px 44px 1fr; gap: 0; }
+  .schedule-page .timeline-dot { position: relative; top: auto; left: auto; align-self: center; justify-self: center; }
+
   .story-gallery-trigger { transform: scale(1.15); transform-origin: right center; }
   .manga-story-panel-2 h3 { font-size: clamp(1.4rem, 2vw, 1.9rem); white-space: nowrap; }
 
@@ -768,7 +930,38 @@
     max-width: 520px;
   }
 
+  .prologue-section {
+    padding: 52px 18px 60px;
+  }
 
+  .prologue-portraits {
+    gap: 32px;
+    max-width: 760px;
+  }
+
+  .prologue-card,
+  .prologue-card-bride {
+    grid-template-columns: minmax(220px, .9fr) minmax(0, 1.1fr);
+    min-height: 360px;
+    box-shadow: 6px 6px 0 var(--prologue-ink);
+  }
+
+  .prologue-card-bride {
+    grid-template-columns: minmax(0, 1.1fr) minmax(220px, .9fr);
+  }
+
+  .prologue-card-groom { transform: rotate(-.35deg); }
+  .prologue-card-bride { transform: rotate(.35deg); }
+  .prologue-card:hover { transform: translateY(-2px); box-shadow: 8px 8px 0 var(--prologue-ink); }
+
+  .prologue-handwritten-quote {
+    margin: 14px;
+    padding: 26px;
+    transform: none;
+  }
+
+  .prologue-card-bride .prologue-handwritten-quote { transform: none; }
+  .handwritten-text { font-size: 1.32rem; }
 
   .home-hero, .venue-card { grid-template-columns: 1fr; }
   .home-photo-wrap { order: -1; min-height: 480px; }
@@ -796,11 +989,33 @@
 @media (hover: none) {
   .story-gallery-trigger span,
   .portrait-wrap span { opacity: 1; transform: translateY(0); }
+  .prologue-card:hover { transform: none; box-shadow: 9px 9px 0 var(--prologue-ink); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .story-gallery-trigger span,
   .portrait-wrap span { transition: none; }
+
+  .prologue-card {
+    transition: none;
+  }
+
+  .prologue-card-groom,
+  .prologue-card-bride {
+    transform: rotate(0deg);
+  }
+
+  .prologue-card:hover {
+    transform: none;
+  }
+
+  .prologue-handwritten-quote {
+    transform: rotate(0deg);
+  }
+
+  .prologue-card-bride .prologue-handwritten-quote {
+    transform: rotate(0deg);
+  }
 }
 
 @media (max-width: 560px) {
@@ -816,9 +1031,83 @@
   .speech-bubble { display: inline-block; position: relative; top: auto; right: auto; left: auto; margin-top: 16px; border-radius: 999px; transform: none; }
   .speech-bubble::after { display: none; }
 
-  .home-page { padding: 24px 14px 50px; }
+  .prologue-section {
+    padding: 36px 14px 50px;
+  }
+
+  .prologue-portraits {
+    gap: 28px;
+    max-width: 430px;
+  }
+
+  .prologue-card,
+  .prologue-card-bride {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "photo" "note";
+    min-height: 0;
+    overflow: visible;
+    box-shadow: 5px 5px 0 var(--prologue-ink);
+    transform: none;
+  }
+
+  .prologue-card:hover {
+    box-shadow: 5px 5px 0 var(--prologue-ink);
+    transform: none;
+  }
+
+  .prologue-photo-wrap {
+    min-height: 0;
+    border-bottom: 3px solid var(--prologue-ink);
+  }
+
+  .prologue-card-groom .prologue-photo-wrap,
+  .prologue-card-bride .prologue-photo-wrap { aspect-ratio: 4 / 5; }
+  .prologue-card-groom .prologue-photo { object-position: center 22%; }
+  .prologue-card-bride .prologue-photo {
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  .prologue-photo-label {
+    right: 10px;
+    bottom: 10px;
+    padding: 6px 9px;
+    box-shadow: 2px 2px 0 var(--prologue-ink);
+    font-size: .62rem;
+  }
+
+  .prologue-handwritten-quote {
+    position: relative;
+    inset: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 32px 20px 24px;
+    border: 0;
+    background-image: repeating-linear-gradient(to bottom, transparent 0 30px, rgba(190, 14, 101, .12) 30px 31px);
+    box-shadow: none;
+    transform: none;
+  }
+
+  .prologue-card-bride .prologue-handwritten-quote { transform: none; }
+  .prologue-handwritten-quote::before { top: -10px; width: 64px; height: 20px; }
+
+  .handwritten-text {
+    margin-bottom: 14px;
+    font-size: 1.22rem;
+    line-height: 1.5;
+  }
+
+  .handwritten-attribution {
+    font-size: 1.05rem;
+  }
+
+  .home-page { padding: 10px 14px 50px; }
   .home-hero { border-radius: 22px; }
   .home-copy { padding: 34px 20px; }
+  .home-date { flex-direction: column; gap: .2em; }
+  .home-date-time { justify-content: center; }
+  .home-date-time [aria-hidden="true"] { display: none; }
   .home-photo-wrap { min-height: 370px; }
   .venue-details { padding: 30px 24px; }
   .venue-map-wrap { min-height: 260px; }
@@ -833,6 +1122,7 @@
   }
 
   .timeline-time {
+    justify-items: start;
     padding: 0 0 8px;
     text-align: left;
   }

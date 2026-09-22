@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { CardGiftcard } from '@mui/icons-material';
 import SideMenu from './SideMenu';
+import GiftRegistryModal from './GiftRegistryModal';
 import chibiGoku from '../assets/images/chibi-goku-groom.webp';
 import chibiChiChi from '../assets/images/chibi-chichi-bride.webp';
 
@@ -23,7 +26,7 @@ const NavbarContainer = styled(Navbar)`
   backdrop-filter: blur(14px);
 
   @media (max-width: 1103px) {
-    padding: 10px 18px 7px;
+    padding: 8px 18px;
   }
 `;
 
@@ -49,6 +52,7 @@ const TitleLink = styled(Link)`
   &:hover { color: #fdb21e; text-decoration: none; }
 
   @media (max-width: 1103px) {
+    align-items: center;
     gap: .34rem;
     font-size: 1.65rem;
   }
@@ -64,7 +68,9 @@ const TitleCharacter = styled.img`
   height: 2.35rem;
   flex: 0 0 auto;
   object-fit: contain;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   transform: translateY(-3px);
+  transition: opacity .2s ease;
   filter: drop-shadow(0 2px 3px rgba(50, 27, 39, .32));
 
   @media (max-width: 1103px) {
@@ -76,7 +82,7 @@ const TitleCharacter = styled.img`
   }
 `;
 
-const MenuButton = styled(Button)`
+const MenuButton = styled.div`
   position: absolute;
   left: 0;
   padding: 0;
@@ -90,6 +96,7 @@ const MenuButton = styled(Button)`
 const NavItemsContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 8px;
   flex-wrap: wrap;
   gap: 1.7rem;
   width: 100%;
@@ -123,6 +130,8 @@ const StyledNavLink = styled(Nav.Link)`
 `;
 
 const StyledButton = styled(Button)`
+  display: inline-flex;
+  align-items: center;
   margin-top: 2px;
   padding: .28rem 1.1rem;
   border-color: #fdb21e;
@@ -131,6 +140,7 @@ const StyledButton = styled(Button)`
   color: black;
   font-size: .76rem;
   font-weight: 700;
+  line-height: 1;
   letter-spacing: .08em;
   text-transform: uppercase;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
@@ -138,8 +148,42 @@ const StyledButton = styled(Button)`
   @media (max-width: 1103px) { display: none; }
 `;
 
+const GiftNavLink = styled.button`
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  color: #f8eee4;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color .2s ease;
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: #fdb21e;
+    content: "";
+    transform: scaleX(0);
+    transition: transform .2s ease;
+  }
+  &:hover { color: #fdb21e; }
+  &:hover::after { transform: scaleX(1); }
+  & svg { font-size: .85rem; }
+  @media (max-width: 1103px) { display: none; }
+`;
+
 const links = [
   ['Home', '/#home'],
+  ['Before We Met', '/#prologue'],
   ['Our Story', '/#story'],
   ['Schedule', '/#schedule'],
   ['Groomsmen', '/#groomsmen'],
@@ -147,25 +191,49 @@ const links = [
   ['Location', '/#location'],
 ];
 
-const AppNavbar = () => (
-  <NavbarContainer>
-    <TitleSection>
-      <MenuButton aria-label="Open navigation"><SideMenu /></MenuButton>
-      <TitleLink to="/#home">
-        <TitleCharacter src={chibiGoku} alt="" aria-hidden="true" draggable="false" />
-        <span>Rhys</span>
-        <span aria-hidden="true">&</span>
-        <span>Teniola</span>
-        <TitleCharacter src={chibiChiChi} alt="" aria-hidden="true" draggable="false" />
-      </TitleLink>
-    </TitleSection>
-    <NavItemsContainer>
-      {links.map(([label, path]) => (
-        <StyledNavLink as={Link} to={path} key={path}>{label}</StyledNavLink>
-      ))}
-      <StyledButton as={Link} to="/rsvp" type="button">RSVP</StyledButton>
-    </NavItemsContainer>
-  </NavbarContainer>
-);
+const AppNavbar = () => {
+  const [giftOpen, setGiftOpen] = useState(false);
+  const [isRsvpHovered, setIsRsvpHovered] = useState(false);
+  const [isRsvpFocused, setIsRsvpFocused] = useState(false);
+  const areChibisVisible = isRsvpHovered || isRsvpFocused;
+
+  return (
+    <>
+      <NavbarContainer>
+        <TitleSection>
+          <MenuButton><SideMenu /></MenuButton>
+          <TitleLink to="/#home">
+            <TitleCharacter $isVisible={areChibisVisible} src={chibiGoku} alt="" aria-hidden="true" draggable="false" />
+            <span>Rhys</span>
+            <span aria-hidden="true">&</span>
+            <span>Teniola</span>
+            <TitleCharacter $isVisible={areChibisVisible} src={chibiChiChi} alt="" aria-hidden="true" draggable="false" />
+          </TitleLink>
+        </TitleSection>
+        <NavItemsContainer>
+          {links.map(([label, path]) => (
+            <StyledNavLink as={Link} to={path} key={path}>{label}</StyledNavLink>
+          ))}
+          <GiftNavLink type="button" onClick={() => setGiftOpen(true)}>
+            <CardGiftcard />
+            Gift Registry
+          </GiftNavLink>
+          <StyledButton
+            as={Link}
+            to="/rsvp"
+            type="button"
+            onMouseEnter={() => setIsRsvpHovered(true)}
+            onMouseLeave={() => setIsRsvpHovered(false)}
+            onFocus={() => setIsRsvpFocused(true)}
+            onBlur={() => setIsRsvpFocused(false)}
+          >
+            RSVP
+          </StyledButton>
+        </NavItemsContainer>
+      </NavbarContainer>
+      <GiftRegistryModal open={giftOpen} onClose={() => setGiftOpen(false)} />
+    </>
+  );
+};
 
 export default AppNavbar;

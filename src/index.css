@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
 :root {
   font-family: "Urbanist", sans-serif;
   line-height: 1.5;
@@ -55,11 +57,21 @@ html {
 
 @media (max-width: 1103px) {
   .app-content {
-    padding-top: 56px;
+    padding-top: 51px;
   }
 
   .scroll-section {
-    scroll-margin-top: 56px;
+    scroll-margin-top: 51px;
+  }
+}
+
+@media (max-width: 560px) {
+  .app-content {
+    padding-top: 46px;
+  }
+
+  .scroll-section {
+    scroll-margin-top: 46px;
   }
 }
 

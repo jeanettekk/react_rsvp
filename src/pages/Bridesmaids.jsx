@@ -13,8 +13,8 @@ function Bridesmaids() {
   const [lightboxName, setLightboxName] = useState('');
 
   const party = [
-    { initials: 'B1', name: 'Bridesmaid Name', role: 'Bridesmaid', images: [], text: 'Add a few warm words about this bridesmaid and the role she has played in your story.' },
-    { initials: 'B2', name: 'Bridesmaid Name', role: 'Bridesmaid', images: [], text: 'Add a fun fact, shared memory, or a short message celebrating your friendship.' },
+    { initials: 'B1', name: 'Jessica', role: 'Bridesmaid', images: [], text: 'Add a few warm words about this bridesmaid and the role she has played in your story.' },
+    { initials: 'B2', name: 'Jen', role: 'Bridesmaid', images: [], text: 'Add a fun fact, shared memory, or a short message celebrating your friendship.' },
   ];
 
   const openLightbox = (images, name, index = 0) => {
