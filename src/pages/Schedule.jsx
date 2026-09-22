@@ -11,15 +11,15 @@ const locationStickers = {
 };
 
 const events = [
-  { time: '13:00 – 13:30', activity: 'Guest arrival and seating', location: 'Church' },
-  { time: '13:30 – 14:00', activity: 'Wedding ceremony', location: 'Church', highlight: true },
-  { time: '16:00 – 16:30', activity: 'Guests travel to the reception', location: 'Travel' },
-  { time: '16:30 – 17:00', activity: 'Guests arrival and seating', location: 'Theatre' },
-  { time: '17:30 – 17:40', activity: 'Bride and groom entrance', location: 'Theatre', highlight: true },
-  { time: '17:45 – 19:30', activity: 'Buffet dinner and games', location: 'Theatre' },
-  { time: '19:30 – 19:50', activity: 'Wedding speeches', location: 'Theatre' },
-  { time: '20:00 – 23:00', activity: 'First dance and party', location: 'Theatre', highlight: true },
-  { time: '23:00', activity: 'Celebration ends', location: 'Theatre' },
+  { startTime: '1:00 pm', activity: 'Guest arrival and seating', location: 'Church' },
+  { startTime: '1:30 pm', endTime: '2:00 pm', activity: 'Wedding ceremony', location: 'Church', highlight: true },
+  { startTime: '4:00 pm', activity: 'Guests travel to the reception', location: 'Travel' },
+  { startTime: '4:30 pm', activity: 'Guests arrival and seating', location: 'Theatre' },
+  { startTime: '5:30 pm', activity: 'Bride and groom entrance', location: 'Theatre', highlight: true },
+  { startTime: '5:45 pm', activity: 'Buffet dinner and games', location: 'Theatre' },
+  { startTime: '7:30 pm', activity: 'Wedding speeches', location: 'Theatre' },
+  { startTime: '8:00 pm', activity: 'First dance and party', location: 'Theatre', highlight: true },
+  { startTime: '11:00 pm', activity: 'Celebration ends', location: 'Theatre' },
 ];
 
 const Schedule = () => (
@@ -27,16 +27,26 @@ const Schedule = () => (
     <header className="page-intro">
       <span className="page-kicker">Saturday · 27 February 2027</span>
       <h1>The Schedule</h1>
-      <p>Everything you need to know for celebrating with us, from the ceremony to the final dance.</p>
     </header>
 
     <section className="timeline" aria-label="Wedding day schedule">
       {events.map((event) => (
         <article
           className={`timeline-item${event.highlight ? ' timeline-item--highlight' : ''}`}
-          key={`${event.time}-${event.activity}`}
+          key={`${event.startTime}-${event.activity}`}
         >
-          <time className="timeline-time">{event.time}</time>
+          <time
+            className="timeline-time"
+            aria-label={event.endTime ? `${event.startTime} to ${event.endTime}` : event.startTime}
+          >
+            <span>{event.startTime}</span>
+            {event.endTime && (
+              <>
+                <span className="timeline-time-divider" aria-hidden="true" />
+                <span>{event.endTime}</span>
+              </>
+            )}
+          </time>
           <span className="timeline-dot" aria-hidden="true" />
           <div className="timeline-content">
             <h2>{event.activity}</h2>

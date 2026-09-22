@@ -8,7 +8,10 @@ const Home = () => (
       <div className="home-copy">
         <span className="page-kicker">Save the date</span>
         <h1>We&apos;re getting married!</h1>
-        <p className="home-date">Saturday · 27 February 2027</p>
+        <time className="home-date" dateTime="2027-02-27T13:00:00" aria-label="Saturday, 27 February 2027 at 1 PM">
+          <span>Saturday · 27 February 2027</span>
+          <span className="home-date-time"><span aria-hidden="true">·</span> 1 PM</span>
+        </time>
         <div className="home-venue">
           <span>Ceremony at</span>
           <strong>St Mark&apos;s Church</strong>

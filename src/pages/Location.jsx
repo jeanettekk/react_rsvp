@@ -20,7 +20,7 @@ const Location = () => (
     <header className="page-intro">
       <span className="page-kicker">Getting there</span>
       <h1>Locations</h1>
-      <p>Everything you need to find your way from the ceremony to the celebration. Select a map to explore the surrounding area.</p>
+      <p>Everything you need to find your way from the ceremony to the celebration.</p>
     </header>
     <section className="venue-list">
       {venues.map((venue) => (
