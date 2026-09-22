@@ -35,14 +35,15 @@ function Bridesmaids() {
         {party.map((person, index) => (
           <article className="party-card" key={`${person.role}-${index}`}>
             {person.images.length > 0 ? (
-              <div className="portrait-wrap">
-                <img
-                  src={person.images[0]}
-                  alt={person.name}
-                  className="portrait-img"
-                  onClick={() => openLightbox(person.images, person.name)}
-                />
-              </div>
+              <button
+                className="portrait-wrap"
+                type="button"
+                onClick={() => openLightbox(person.images, person.name)}
+                aria-label={`View ${person.name} photo gallery`}
+              >
+                <img src={person.images[0]} alt="" className="portrait-img" />
+                <span>View gallery</span>
+              </button>
             ) : (
               <div className="portrait-placeholder" aria-label="Photograph placeholder">{person.initials}</div>
             )}
