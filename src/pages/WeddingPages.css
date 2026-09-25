@@ -1314,3 +1314,90 @@
   .schedule-card { border-radius: 18px; }
   .schedule-row { padding: 16px; }
 }
+
+/* RSVP Page - Clean, Elegant Design */
+.rsvp-page {
+  position: relative;
+  padding: 72px 24px 80px;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(253, 178, 30, 0.18), transparent 22rem),
+    radial-gradient(circle at 92% 88%, rgba(190, 14, 101, 0.1), transparent 25rem),
+    #f8eee4;
+  color: #321b27;
+}
+
+.rsvp-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.rsvp-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(190, 14, 101, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(77, 35, 54, 0.08);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.rsvp-card:hover {
+  box-shadow: 0 16px 40px rgba(77, 35, 54, 0.12);
+  transform: translateY(-2px);
+}
+
+.rsvp-form-container {
+  position: relative;
+  background: #fffaf2;
+}
+
+.rsvp-iframe {
+  width: 100%;
+  height: 1600px;
+  border: none;
+  display: block;
+}
+
+/* Responsive Design for RSVP Page */
+@media (max-width: 800px) {
+  .rsvp-page {
+    padding: 52px 18px 60px;
+  }
+
+  .rsvp-container {
+    padding: 16px;
+  }
+
+  .rsvp-card {
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 560px) {
+  .rsvp-page {
+    padding: 36px 14px 50px;
+  }
+
+  .rsvp-container {
+    padding: 12px;
+  }
+
+  .rsvp-card {
+    border-radius: 10px;
+  }
+
+  .rsvp-iframe {
+    height: 1750px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .rsvp-card {
+    transition: none;
+  }
+
+  .rsvp-card:hover {
+    transform: none;
+  }
+}
