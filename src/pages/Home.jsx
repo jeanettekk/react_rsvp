@@ -9,7 +9,9 @@ const Home = () => (
         <span className="page-kicker">Save the date</span>
         <h1>We&apos;re getting married!</h1>
         <time className="home-date" dateTime="2027-02-27T13:00:00" aria-label="Saturday, 27 February 2027 at 1 PM">
-          <span>Saturday · 27 February 2027</span>
+          <span className="home-date-day">Saturday</span>
+          <span className="home-date-separator" aria-hidden="true">·</span>
+          <span>27 February 2027</span>
           <span className="home-date-time"><span aria-hidden="true">·</span> 1 PM</span>
         </time>
         <div className="home-venue">

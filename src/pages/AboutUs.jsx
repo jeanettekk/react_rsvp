@@ -18,7 +18,7 @@ const storyChapters = [
     title: 'How We Met',
     label: 'The opening scene',
     images: [howWeMet1, howWeMet2, howWeMet3, howWeMet4],
-    text: 'Our story began as official "Pleasure Makers" at Magnums Pop up Store in 2016, chocolate, vibes and nerding out together.',
+    text: 'Our story began as official "Pleasure Makers" at Magnums Pop up Store in 2016, chocolate 🍫, vibes and nerding out together.',
   },
   {
     number: '02',
@@ -38,7 +38,9 @@ const storyChapters = [
 
 function AboutUs() {
   const storyStageRef = useRef(null);
+  const previousStoryStageRef = useRef(0);
   const [storyStage, setStoryStage] = useState(0);
+  const [storyDirection, setStoryDirection] = useState('forward');
   const [lightboxGallery, setLightboxGallery] = useState(null);
   const { motionEnabled } = useMotionSetting();
 
@@ -53,11 +55,11 @@ function AboutUs() {
     const currentStage = Math.max(1, storyStage);
     const targetStage = storyStage === 0 && direction > 0
       ? 1
-      : Math.min(4, Math.max(1, currentStage + direction));
+      : Math.min(5, Math.max(1, currentStage + direction));
     const travel = Math.max(1, storyStageElement.offsetHeight - window.innerHeight);
     const stageTop = window.scrollY + storyStageElement.getBoundingClientRect().top;
 
-    const scrollFraction = 0.02 + ((targetStage - 1 + 0.5) / 4) * 0.98;
+    const scrollFraction = 0.02 + ((targetStage - 1 + 0.5) / 5) * 0.98;
 
     window.scrollTo({
       top: stageTop + travel * scrollFraction,
@@ -76,7 +78,7 @@ function AboutUs() {
       const desktop = window.matchMedia('(min-width: 901px)').matches;
       if (!motionEnabled || !desktop) {
         storyStageElement.style.setProperty('--story-progress', '1');
-        setStoryStage(4);
+        setStoryStage(5);
         return;
       }
 
@@ -84,7 +86,11 @@ function AboutUs() {
       const travel = Math.max(1, storyStageElement.offsetHeight - window.innerHeight);
       const progress = Math.min(1, Math.max(0, -rect.top / travel));
       storyStageElement.style.setProperty('--story-progress', progress.toFixed(3));
-      const stage = progress < 0.02 ? 0 : Math.min(4, 1 + Math.floor((progress - 0.02) / 0.98 * 4));
+      const stage = progress < 0.02 ? 0 : Math.min(5, 1 + Math.floor((progress - 0.02) / 0.98 * 5));
+      if (stage !== previousStoryStageRef.current) {
+        setStoryDirection(stage > previousStoryStageRef.current ? 'forward' : 'backward');
+        previousStoryStageRef.current = stage;
+      }
       setStoryStage(stage);
     };
 
@@ -110,7 +116,7 @@ function AboutUs() {
         <h1 id="story-heading">Our Story</h1>
       </header>
 
-      <div ref={storyStageRef} className={`story-scroll-stage story-stage-${storyStage}`}>
+      <div ref={storyStageRef} className={`story-scroll-stage story-stage-${storyStage} story-direction-${storyDirection}`}>
         <div className="story-sticky-canvas">
           <div className="story-panels">
             {storyChapters.map((chapter, index) => (
@@ -155,7 +161,7 @@ function AboutUs() {
             <button
               type="button"
               onClick={() => navigateStory(1)}
-              disabled={storyStage >= 4}
+              disabled={storyStage >= 5}
               aria-label="Next story chapter"
             >
               &#8250;

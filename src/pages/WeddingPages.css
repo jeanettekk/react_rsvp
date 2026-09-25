@@ -61,7 +61,7 @@
   --story-progress: 0;
   --story-fill: 0;
   position: relative;
-  height: 340vh;
+  height: 400vh;
 }
 
 .story-sticky-canvas {
@@ -308,7 +308,8 @@
 .story-stage-1 { --story-fill: .25; }
 .story-stage-2 { --story-fill: .5; }
 .story-stage-3 { --story-fill: .75; }
-.story-stage-4 { --story-fill: 1; }
+.story-stage-4 { --story-fill: .9; }
+.story-stage-5 { --story-fill: 1; }
 
 .story-progress button {
   display: grid;
@@ -885,21 +886,126 @@
   .schedule-page .timeline-item { grid-template-columns: 95px 44px 1fr; gap: 0; }
   .schedule-page .timeline-dot { position: relative; top: auto; left: auto; align-self: center; justify-self: center; }
 
-  .story-gallery-trigger { transform: scale(1.15); transform-origin: right center; }
+  .story-gallery-trigger { transform: none; }
   .manga-story-panel-2 h3 { font-size: clamp(1.4rem, 2vw, 1.9rem); white-space: nowrap; }
 
-  .story-stage-1 .manga-story-panel-1,
-  .story-stage-2 .manga-story-panel-1,
-  .story-stage-2 .manga-story-panel-2,
+  .manga-story-panel-1,
+  .manga-story-panel-2,
+  .manga-story-panel-3 {
+    transform-origin: center;
+    transition: opacity .62s ease,
+      width .72s cubic-bezier(.18, .82, .22, 1),
+      transform .72s cubic-bezier(.18, .82, .22, 1),
+      filter .62s ease;
+  }
+
+  .manga-story-panel-1 { transform-origin: left top; }
+  .manga-story-panel-2 { transform-origin: right center; }
+  .manga-story-panel-3 { transform-origin: left bottom; }
+
+  .story-direction-forward.story-stage-1 .manga-story-panel-1 .story-panel-copy,
+  .story-direction-backward.story-stage-1 .manga-story-panel-1 .story-panel-copy {
+    animation: story-copy-phase-1 .9s ease-out both;
+  }
+
+  .story-direction-forward.story-stage-2 .manga-story-panel-1 .story-panel-copy,
+  .story-direction-forward.story-stage-2 .manga-story-panel-2 .story-panel-copy,
+  .story-direction-backward.story-stage-2 .manga-story-panel-2 .story-panel-copy {
+    animation: story-copy-phase-2 .9s ease-out both;
+  }
+
+  .story-direction-forward.story-stage-3 .manga-story-panel-2 .story-panel-copy,
+  .story-direction-forward.story-stage-3 .manga-story-panel-3 .story-panel-copy,
+  .story-direction-backward.story-stage-3 .manga-story-panel-3 .story-panel-copy {
+    animation: story-copy-phase-3 .9s ease-out both;
+  }
+
+  .story-direction-forward.story-stage-4 .manga-story-panel-3 .story-panel-copy {
+    animation: story-copy-phase-4 .9s ease-out both;
+  }
+
+  /* Each chapter arrives enlarged above the settled chapters before it. */
+  .story-stage-1 .manga-story-panel-1 {
+    z-index: 3;
+    width: 108%;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-3.7%) rotate(-.35deg);
+  }
+
+  .story-stage-2 .manga-story-panel-1 {
+    z-index: 1;
+    opacity: .76;
+    pointer-events: auto;
+    transform: scale(1) rotate(0);
+    filter: saturate(.84);
+  }
+
+  .story-stage-2 .manga-story-panel-2 {
+    z-index: 4;
+    width: 108%;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(3.7%) rotate(.35deg);
+  }
+
   .story-stage-3 .manga-story-panel-1,
-  .story-stage-3 .manga-story-panel-2,
-  .story-stage-3 .manga-story-panel-3 { opacity: 1; pointer-events: auto; transform: translate(0) rotate(0); }
+  .story-stage-3 .manga-story-panel-2 {
+    z-index: 1;
+    opacity: .62;
+    pointer-events: auto;
+    transform: scale(1) rotate(0);
+    filter: saturate(.78);
+  }
+
+  .story-stage-3 .manga-story-panel-2 { z-index: 2; }
+
+  .story-stage-3 .manga-story-panel-3 {
+    z-index: 5;
+    width: 108%;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-6%) rotate(-.35deg);
+  }
 
   .story-stage-4 .manga-story-panel-1,
   .story-stage-4 .manga-story-panel-2,
-  .story-stage-4 .manga-story-panel-3 { opacity: .12; transform: scale(.96); }
+  .story-stage-4 .manga-story-panel-3 {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) rotate(0);
+    filter: none;
+  }
 
-  .story-stage-4 .manga-story-finale { opacity: 1; pointer-events: auto; transform: scale(1) rotate(0); }
+  .story-stage-5 .manga-story-panel-1,
+  .story-stage-5 .manga-story-panel-2,
+  .story-stage-5 .manga-story-panel-3 {
+    opacity: .12;
+    transform: scale(.96);
+    filter: saturate(.65);
+  }
+
+  .story-stage-5 .manga-story-finale { opacity: 1; pointer-events: auto; transform: scale(1) rotate(0); }
+}
+
+@keyframes story-copy-phase-1 {
+  0%, 50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes story-copy-phase-2 {
+  0%, 50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes story-copy-phase-3 {
+  0%, 50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes story-copy-phase-4 {
+  0%, 50% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @media (max-width: 900px) {
@@ -983,6 +1089,7 @@
   .story-sticky-canvas { position: relative; top: auto; height: auto; min-height: 0; padding: 60px 24px; }
   .story-panels { display: grid; position: relative; inset: auto; gap: 24px; max-width: 760px; margin: 0 auto; transform: none; }
   .manga-story-panel { position: relative; inset: auto; width: auto; opacity: 1; pointer-events: auto; transform: none; }
+  .story-panel-copy { animation: none !important; }
   .story-progress { display: none; }
 }
 
@@ -1105,9 +1212,10 @@
   .home-page { padding: 10px 14px 50px; }
   .home-hero { border-radius: 22px; }
   .home-copy { padding: 34px 20px; }
-  .home-date { flex-direction: column; gap: .2em; }
+  .home-date { gap: .2em .35em; }
+  .home-date-day { flex-basis: 100%; }
+  .home-date-separator { display: none; }
   .home-date-time { justify-content: center; }
-  .home-date-time [aria-hidden="true"] { display: none; }
   .home-photo-wrap { min-height: 370px; }
   .venue-details { padding: 30px 24px; }
   .venue-map-wrap { min-height: 260px; }
@@ -1122,13 +1230,22 @@
   }
 
   .timeline-time {
-    justify-items: start;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7px;
     padding: 0 0 8px;
+    white-space: nowrap;
     text-align: left;
   }
 
+  .timeline-time-divider {
+    width: 18px;
+    flex: 0 0 18px;
+  }
+
   .timeline-dot {
-    top: 4px;
+    top: 2px;
     left: 0;
   }
 
