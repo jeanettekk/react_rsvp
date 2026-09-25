@@ -1,3 +1,4 @@
+import { CollectionsOutlined } from '@mui/icons-material';
 import { useState } from 'react';
 import Lightbox from '../components/Lightbox';
 import './WeddingPages.css';
@@ -48,7 +49,10 @@ function Groomsmen() {
                 aria-label={`View ${person.name} photo gallery`}
               >
                 <img src={person.images[0]} alt="" className="portrait-img" />
-                <span>View gallery</span>
+                <span className="gallery-hint">
+                  <CollectionsOutlined aria-hidden="true" />
+                  <span className="gallery-hint-prefix">View </span>gallery
+                </span>
               </button>
             ) : (
               <div className="portrait-placeholder" aria-label="Photograph placeholder">{person.initials}</div>

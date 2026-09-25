@@ -21,7 +21,7 @@ const NavbarContainer = styled(Navbar)`
   box-sizing: border-box;
   padding: 9px 24px 8px;
   border-bottom: 1px solid rgba(253, 178, 30, .28);
-  background: rgba(190, 14, 101, .96);
+  background: #be0e65;
   box-shadow: 0 8px 28px rgba(50, 27, 39, .18);
   backdrop-filter: blur(14px);
 

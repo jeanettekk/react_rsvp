@@ -1,3 +1,4 @@
+import { CollectionsOutlined } from '@mui/icons-material';
 import { useEffect, useRef, useState } from 'react';
 import howWeMet1 from '../assets/images/story/how-we-met.jpg';
 import howWeMet2 from '../assets/images/story/how-we-met-2.jpg';
@@ -129,7 +130,10 @@ function AboutUs() {
                   aria-label={`View ${chapter.title} photo gallery`}
                 >
                   <img src={chapter.images[0]} alt="" className="story-card-image" />
-                  <span>View gallery</span>
+                  <span className="gallery-hint">
+                    <CollectionsOutlined aria-hidden="true" />
+                    <span className="gallery-hint-prefix">View </span>gallery
+                  </span>
                 </button>
                 <div className="story-panel-copy">
                   <span className="panel-label">{chapter.label}</span>
