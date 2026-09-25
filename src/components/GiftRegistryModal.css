@@ -26,7 +26,7 @@
 /* ── Manga Panel ──────────────────────────────── */
 .gift-panel {
   position: relative;
-  width: min(520px, 100%);
+  width: min(700px, 100%);
   max-height: calc(100vh - 48px);
   box-sizing: border-box;
   overflow-y: auto;
@@ -74,12 +74,21 @@
   color: #321b27;
 }
 
+/* ── Content Wrapper (side-by-side layout) ───── */
+.gift-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
 /* ── Inner Content ────────────────────────────── */
 .gift-panel-inner {
   position: relative;
   z-index: 1;
   padding: 48px 42px 32px;
   text-align: center;
+  flex: 1;
 }
 
 .gift-kicker {
@@ -143,29 +152,59 @@
   outline-offset: 4px;
 }
 
-/* ── Chibi Characters ─────────────────────────── */
-.gift-chibis {
+/* ── Photo Container (4x5 aspect ratio) ──────── */
+.gift-photo-container {
   position: relative;
   z-index: 1;
   display: flex;
   justify-content: center;
-  gap: 24px;
   padding: 0 30px 28px;
 }
 
-.gift-chibi {
-  width: auto;
-  height: 90px;
-  object-fit: contain;
-  filter: drop-shadow(0 3px 5px rgba(50, 27, 39, 0.25));
+.gift-photo {
+  width: 100%;
+  max-width: 240px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 4px;
+  filter: drop-shadow(0 4px 8px rgba(50, 27, 39, 0.2));
 }
 
-.gift-chibi-groom {
-  transform: scaleX(-1);
+/* ── Desktop (side-by-side layout) ────────────── */
+@media (min-width: 768px) {
+  .gift-content-wrapper {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .gift-panel-inner {
+    padding: 48px 32px 48px 48px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .gift-photo-container {
+    padding: 0;
+    flex: 0 0 auto;
+    width: 280px;
+  }
+
+  .gift-photo {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    object-position: center top;
+    border-radius: 0;
+    filter: none;
+  }
 }
 
 /* ── Mobile ───────────────────────────────────── */
-@media (max-width: 560px) {
+@media (max-width: 767px) {
   .gift-backdrop {
     padding: 16px;
   }
@@ -179,12 +218,14 @@
     padding: 40px 24px 24px;
   }
 
-  .gift-chibi {
-    height: 70px;
+  .gift-photo {
+    max-width: 280px;
+    object-position: center 12%;
+    border-radius: 4px;
+    filter: drop-shadow(0 4px 8px rgba(50, 27, 39, 0.2));
   }
 
-  .gift-chibis {
-    gap: 18px;
+  .gift-photo-container {
     padding: 0 20px 22px;
   }
 }

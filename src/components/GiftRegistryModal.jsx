@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
-import chibiGoku from '../assets/images/chibi-goku-groom-2d.webp';
-import chibiChiChi from '../assets/images/chibi-chichi-bride-2d.webp';
+import couplePhoto from '../assets/images/couple-2.jpg';
 import './GiftRegistryModal.css';
 
-const REGISTRY_URL = 'https://example.com/registry';
+const REGISTRY_URL = 'https://www.moonsift.com/collection/teniola_soyeju2026/SHaB5KHls6XwcAFc5HfI';
 
 function GiftRegistryModal({ open, onClose }) {
   useEffect(() => {
@@ -31,26 +30,27 @@ function GiftRegistryModal({ open, onClose }) {
           &#215;
         </button>
 
-        <div className="gift-panel-inner">
-          <span className="gift-kicker">Gift Registry</span>
-          <h2 id="gift-heading" className="gift-heading">Thank you for thinking&nbsp;of&nbsp;us!</h2>
-          <p className="gift-message">
-            Your presence at our wedding is the greatest gift of all.
-            However, if you wish to honour us with a gift, we have set up a registry.
-          </p>
-          <a
-            className="gift-cta"
-            href={REGISTRY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Registry
-          </a>
-        </div>
+        <div className="gift-content-wrapper">
+          <div className="gift-panel-inner">
+            <span className="gift-kicker">Gift Registry</span>
+            <h2 id="gift-heading" className="gift-heading">Thank you for thinking&nbsp;of&nbsp;us!</h2>
+            <p className="gift-message">
+              Your presence at our wedding is the greatest gift of all.
+              However, if you wish to honour us with a gift, we have set up a registry.
+            </p>
+            <a
+              className="gift-cta"
+              href={REGISTRY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Registry
+            </a>
+          </div>
 
-        <div className="gift-chibis" aria-hidden="true">
-          <img src={chibiGoku} alt="" className="gift-chibi gift-chibi-groom" draggable="false" />
-          <img src={chibiChiChi} alt="" className="gift-chibi gift-chibi-bride" draggable="false" />
+          <div className="gift-photo-container" aria-hidden="true">
+            <img src={couplePhoto} alt="" className="gift-photo" draggable="false" />
+          </div>
         </div>
       </div>
     </div>,

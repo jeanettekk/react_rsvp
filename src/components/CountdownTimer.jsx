@@ -32,65 +32,32 @@ const CountdownTimer = () => {
     return () => clearInterval(interval);
   }, [weddingDate]);
 
+  const units = [
+    { value: timeRemaining.days, label: 'Days' },
+    { value: timeRemaining.hours, label: 'Hours' },
+    { value: timeRemaining.minutes, label: 'Minutes' },
+    { value: timeRemaining.seconds, label: 'Seconds' },
+  ];
+
   return (
-    <Box sx={{ textAlign: 'center', padding: 4 }}>
+    <Box sx={{ textAlign: 'center', padding: { xs: 2, sm: 4 } }}>
       <Grid container spacing={1} justifyContent="center">
-        <Grid item>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 1.7,
-            borderRadius: '8px',
-            boxShadow: 3
-          }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#F4504C' }}>{timeRemaining.days}</Typography>
-            <Typography variant="body1" sx={{ fontFamily: '"Urbanist", sans-serif' }}>Days</Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 1.7,
-            borderRadius: '8px',
-            boxShadow: 3
-          }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#F4504C' }}>{timeRemaining.hours}</Typography>
-            <Typography variant="body1" sx={{ fontFamily: '"Urbanist", sans-serif' }}>Hours</Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 1.7,
-            borderRadius: '8px',
-            boxShadow: 3
-          }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#F4504C' }}>{timeRemaining.minutes}</Typography>
-            <Typography variant="body1" sx={{ fontFamily: '"Urbanist", sans-serif' }}>Minutes</Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            backgroundColor: 'white',
-            padding: 1.7,
-            borderRadius: '8px',
-            boxShadow: 3
-          }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', color: '#F4504C' }}>{timeRemaining.seconds}</Typography>
-            <Typography variant="body1" sx={{ fontFamily: '"Urbanist", sans-serif' }}>Seconds</Typography>
-          </Box>
-        </Grid>
+        {units.map(({ value, label }) => (
+          <Grid item key={label} sx={{ flex: { xs: '1 1 0', sm: '0 1 auto' }, minWidth: 0 }}>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              padding: { xs: 1, sm: 1.7 },
+              borderRadius: '8px',
+              boxShadow: 3
+            }}>
+              <Typography sx={{ fontWeight: 'bold', color: '#F4504C', fontSize: { xs: '1.4rem', sm: '2.125rem' } }}>{value}</Typography>
+              <Typography sx={{ fontFamily: '"Urbanist", sans-serif', fontSize: { xs: '0.75rem', sm: '1rem' } }}>{label}</Typography>
+            </Box>
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );
