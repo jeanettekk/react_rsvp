@@ -1,25 +1,13 @@
-import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
+import useOverlayBehavior from '../hooks/useOverlayBehavior';
 import couplePhoto from '../assets/images/couple-2.jpg';
 import './GiftRegistryModal.css';
 
 const REGISTRY_URL = 'https://www.moonsift.com/collection/teniola_soyeju2026/SHaB5KHls6XwcAFc5HfI';
 
 function GiftRegistryModal({ open, onClose }) {
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = prev; };
-  }, [open]);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose]);
+  useOverlayBehavior(open, onClose);
 
   if (!open) return null;
 

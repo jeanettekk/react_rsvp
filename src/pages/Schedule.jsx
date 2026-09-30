@@ -1,4 +1,5 @@
 // src/pages/Schedule.jsx
+import { useState } from 'react';
 import './WeddingPages.css';
 import chopperSticker from '../assets/images/location-chopper.gif';
 import merryGoSticker from '../assets/images/location-merry-go.gif';
@@ -22,7 +23,10 @@ const events = [
   { startTime: '11:00 pm', activity: 'Celebration ends', location: 'Theatre' },
 ];
 
-const Schedule = () => (
+const Schedule = () => {
+  const [activeSticker, setActiveSticker] = useState(null);
+
+  return (
   <main className="wedding-page schedule-page">
     <header className="page-intro">
       <span className="page-kicker">Saturday · 27 February 2027</span>
@@ -54,8 +58,14 @@ const Schedule = () => (
               className={`schedule-location-wrap schedule-location-wrap--${event.location.toLowerCase()}`}
               tabIndex="0"
               aria-label={`${event.location} location`}
+              onMouseEnter={() => setActiveSticker(event.activity)}
+              onMouseLeave={() => setActiveSticker(null)}
+              onFocus={() => setActiveSticker(event.activity)}
+              onBlur={() => setActiveSticker(null)}
             >
-              <img className="schedule-location-sticker" src={locationStickers[event.location]} alt="" aria-hidden="true" />
+              {activeSticker === event.activity && (
+                <img className="schedule-location-sticker" src={locationStickers[event.location]} width="480" height="480" alt="" aria-hidden="true" decoding="async" />
+              )}
               <span className={`schedule-location schedule-location--${event.location.toLowerCase()}`}>
                 {event.location}
               </span>
@@ -65,6 +75,7 @@ const Schedule = () => (
       ))}
     </section>
   </main>
-);
+  );
+};
 
 export default Schedule;

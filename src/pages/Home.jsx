@@ -1,5 +1,7 @@
-import couple from '../assets/images/couple-home.jpg';
+import couple from '../assets/images/couple-home.jpg?w=720&format=webp&quality=80';
+import coupleSrcSet from '../assets/images/couple-home.jpg?w=360;540;720&format=webp&quality=80&as=srcset';
 import CountdownTimer from '../components/CountdownTimer';
+import ResponsiveImage from '../components/ResponsiveImage';
 import './WeddingPages.css';
 
 const Home = () => (
@@ -22,7 +24,17 @@ const Home = () => (
         <CountdownTimer />
       </div>
       <figure className="home-photo-wrap">
-        <img src={couple} alt="Rhys and Teniola" className="home-photo" />
+        <ResponsiveImage
+          src={couple}
+          srcSet={coupleSrcSet}
+          sizes="(max-width: 900px) 100vw, 50vw"
+          width={720}
+          height={1080}
+          alt="Rhys and Teniola"
+          className="home-photo"
+          loading="eager"
+          fetchPriority="high"
+        />
         <figcaption>Rhys & Teniola · 2027</figcaption>
       </figure>
     </section>

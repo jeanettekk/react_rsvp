@@ -1,0 +1,31 @@
+.prologue-section {
+  --prologue-ink: #321b27;
+  --prologue-muted: #5f4752;
+  --prologue-berry: #be0e65;
+  --prologue-berry-dark: #8f084b;
+  --prologue-gold: #fdb21e;
+  --prologue-paper: #fffaf2;
+  position: relative;
+  padding: 72px max(24px, calc((100% - 1352px) / 2)) 80px;
+  background:
+    radial-gradient(circle at 8% 12%, rgba(253, 178, 30, 0.18), transparent 22rem),
+    radial-gradient(circle at 92% 88%, rgba(190, 14, 101, 0.1), transparent 25rem),
+    #f8eee4;
+  color: var(--prologue-ink);
+}
+
+.prologue-portraits { display: grid; grid-auto-rows: 1fr; gap: clamp(36px, 5vw, 58px); max-width: 1040px; margin: 0 auto; }
+.prologue-card { display: grid; position: relative; grid-template-columns: minmax(280px, .88fr) minmax(0, 1.12fr); grid-template-areas: "photo note"; min-height: 410px; height: 100%; margin: 0; border: 3px solid var(--prologue-ink); background: var(--prologue-paper); box-shadow: 9px 9px 0 var(--prologue-ink); transition: transform .3s ease, box-shadow .3s ease; }
+.prologue-card-groom { transform: rotate(-.65deg); }
+.prologue-card-bride { grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr); grid-template-areas: "note photo"; transform: rotate(.65deg); }
+.prologue-card:hover { transform: translateY(-4px) rotate(0); box-shadow: 13px 13px 0 var(--prologue-ink); }
+.prologue-photo-wrap { position: relative; grid-area: photo; min-width: 0; overflow: hidden; background: #ead9ca; }
+.prologue-photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.prologue-card-groom .prologue-photo { object-position: center 24%; }
+.prologue-card-bride .prologue-photo { object-position: center center; }
+.prologue-photo-label { position: absolute; right: 14px; bottom: 14px; padding: 7px 11px; border: 2px solid var(--prologue-ink); background: var(--prologue-gold); color: var(--prologue-ink); box-shadow: 3px 3px 0 var(--prologue-ink); font-size: .68rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; transform: rotate(-2deg); }
+.prologue-handwritten-quote { display: flex; position: relative; grid-area: note; flex-direction: column; justify-content: center; margin: 20px; padding: clamp(30px, 4vw, 52px); border: 2px solid var(--prologue-ink); background-color: var(--prologue-paper); background-image: repeating-linear-gradient(to bottom, transparent 0 33px, rgba(190, 14, 101, .12) 33px 34px); box-shadow: 5px 5px 0 rgba(50, 27, 39, .18); transform: rotate(-1deg); }
+.prologue-handwritten-quote::before { position: absolute; top: -12px; left: 50%; width: 76px; height: 23px; background: rgba(253, 178, 30, .62); content: ""; transform: translateX(-50%) rotate(2deg); }
+.prologue-card-bride .prologue-handwritten-quote { transform: rotate(1deg); }
+.handwritten-text { margin: 0 0 18px; color: var(--prologue-ink); font-family: "Caveat", cursive; font-size: clamp(1.35rem, 2.2vw, 1.75rem); font-weight: 400; line-height: 1.45; overflow-wrap: anywhere; text-align: left; }
+.handwritten-attribution { display: block; color: var(--prologue-berry-dark); font-family: "Caveat", cursive; font-size: clamp(1.05rem, 1.6vw, 1.25rem); font-style: italic; font-weight: 600; text-align: right; }

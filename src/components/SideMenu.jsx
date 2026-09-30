@@ -1,26 +1,20 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, IconButton, Typography } from '@mui/material';
-import { Menu as MenuIcon, Home as HomeIcon, Face2 as Face2Icon, Face6 as Face6Icon, Favorite as FavoriteIcon, EventNote as EventNoteIcon, LocationOn as LocationOnIcon, Mail as MailIcon, ChildCare as ChildCareIcon, CardGiftcard as CardGiftcardIcon } from '@mui/icons-material';
+import { Menu as MenuIcon, Mail as MailIcon, CardGiftcard as CardGiftcardIcon } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import GiftRegistryModal from './GiftRegistryModal';
+import navigationItems from '../config/navigation';
 
 
-export default function SideMenu() {
+export default function SideMenu({ onOpenGiftRegistry }) {
   const [open, setOpen] = React.useState(false);
-  const [giftOpen, setGiftOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
   const menuItems = [
-    { text: 'Home', path: '/#home', Icon: HomeIcon },
-    { text: 'Before We Met', path: '/#prologue', Icon: ChildCareIcon },
-    { text: 'Our Story', path: '/#story', Icon: FavoriteIcon },
-    { text: 'Schedule', path: '/#schedule', Icon: EventNoteIcon },
-    { text: 'Groomsmen', path: '/#groomsmen', Icon: Face6Icon },
-    { text: 'Bridesmaids', path: '/#bridesmaids', Icon: Face2Icon },
-    { text: 'Location', path: '/#location', Icon: LocationOnIcon },
+    ...navigationItems.map(({ label, ...item }) => ({ ...item, text: label })),
     { text: 'Gift Registry', action: 'gift', Icon: CardGiftcardIcon },
     { text: 'RSVP', path: '/rsvp', Icon: MailIcon },
   ];
@@ -61,7 +55,7 @@ export default function SideMenu() {
           const isRsvp = item.text === 'RSVP';
           const isGift = item.action === 'gift';
           const linkProps = isGift
-            ? { onClick: () => { setOpen(false); setGiftOpen(true); } }
+            ? { onClick: () => { setOpen(false); onOpenGiftRegistry(); } }
             : { component: Link, to: item.path };
 
           return (
@@ -124,7 +118,10 @@ export default function SideMenu() {
       >
         {DrawerList}
       </Drawer>
-      <GiftRegistryModal open={giftOpen} onClose={() => setGiftOpen(false)} />
     </div>
   );
 }
+
+SideMenu.propTypes = {
+  onOpenGiftRegistry: PropTypes.func.isRequired,
+};

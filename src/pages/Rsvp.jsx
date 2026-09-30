@@ -1,10 +1,11 @@
 import './WeddingPages.css';
+import '../styles/Rsvp.css';
 
 const Rsvp = () => {
   return (
     <main className="wedding-page rsvp-page">
       <header className="page-intro">
-        <span className="page-kicker">We'd love to hear from you</span>
+        <span className="page-kicker">We&apos;d love to hear from you</span>
         <h1>The Invitation</h1>
         <p>Please let us know if you can join our celebration</p>
       </header>
