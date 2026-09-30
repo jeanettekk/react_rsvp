@@ -1,6 +1,6 @@
 .wedding-page {
   min-height: calc(100vh - 72px);
-  padding: 45px 24px 80px;
+  padding: 45px max(24px, calc((100% - 1352px) / 2)) 80px;
   box-sizing: border-box;
   color: #321b27;
   background:
@@ -598,13 +598,28 @@
 .schedule-location--travel { border-color: rgba(23, 126, 154, 0.35); color: #16758d; background: #f4fcfd; }
 
 .party-grid {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 26px;
   max-width: 1050px;
   margin: 0 auto;
-  justify-content: center;
-  align-items: start;
+  overflow: hidden;
+  border: 1px solid rgba(190, 14, 101, 0.14);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 45px rgba(77, 35, 54, 0.08);
+}
+
+.party-grid::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(circle, rgba(190, 14, 101, .11) 1px, transparent 1.3px);
+  background-size: 8px 8px;
+  content: "";
+  opacity: .42;
+  pointer-events: none;
 }
 
 .bridesmaids-page .party-grid {
@@ -614,7 +629,16 @@
 
 .party-card {
   overflow: hidden;
+  border: 0;
+  border-left: 1px solid rgba(190, 14, 101, 0.14);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   text-align: center;
+}
+
+.party-card:first-child {
+  border-left: 0;
 }
 
 .portrait-placeholder {
@@ -708,17 +732,6 @@
   padding: 25px 22px 28px;
 }
 
-.party-card-body::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: radial-gradient(circle, rgba(190, 14, 101, .11) 1px, transparent 1.3px);
-  background-size: 8px 8px;
-  content: "";
-  opacity: .42;
-  pointer-events: none;
-}
-
 .party-card-body p {
   text-align: left;
 }
@@ -764,7 +777,7 @@
 .venue-map { display: block; width: 100%; height: 100%; border: 0; }
 
 .rsvp-cta {
-  padding: clamp(70px, 10vw, 120px) 24px;
+  padding: clamp(70px, 10vw, 120px) max(24px, calc((100% - 1352px) / 2));
   background: #be0e65;
   color: #fff;
   text-align: center;
@@ -776,130 +789,6 @@
 .rsvp-cta-button { display: inline-block; padding: 14px 34px; border: 2px solid #fdb21e; border-radius: 999px; background: #fdb21e; color: #321b27; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transition: transform .2s ease, background .2s ease; }
 .rsvp-cta-button:hover { transform: translateY(-2px); background: #fdc149; color: #321b27; }
 
-.prologue-section {
-  --prologue-ink: #321b27;
-  --prologue-muted: #5f4752;
-  --prologue-berry: #be0e65;
-  --prologue-berry-dark: #8f084b;
-  --prologue-gold: #fdb21e;
-  --prologue-paper: #fffaf2;
-  position: relative;
-  padding: 72px 24px 80px;
-  background:
-    radial-gradient(circle at 8% 12%, rgba(253, 178, 30, 0.18), transparent 22rem),
-    radial-gradient(circle at 92% 88%, rgba(190, 14, 101, 0.1), transparent 25rem),
-    #f8eee4;
-  color: var(--prologue-ink);
-}
-
-.prologue-portraits {
-  display: grid;
-  grid-auto-rows: 1fr;
-  gap: clamp(36px, 5vw, 58px);
-  max-width: 1040px;
-  margin: 0 auto;
-}
-
-.prologue-card {
-  display: grid;
-  position: relative;
-  grid-template-columns: minmax(280px, .88fr) minmax(0, 1.12fr);
-  grid-template-areas: "photo note";
-  min-height: 410px;
-  height: 100%;
-  margin: 0;
-  border: 3px solid var(--prologue-ink);
-  background: var(--prologue-paper);
-  box-shadow: 9px 9px 0 var(--prologue-ink);
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.prologue-card-groom { transform: rotate(-.65deg); }
-.prologue-card-bride { grid-template-columns: minmax(0, 1.12fr) minmax(280px, .88fr); grid-template-areas: "note photo"; transform: rotate(.65deg); }
-.prologue-card:hover { transform: translateY(-4px) rotate(0); box-shadow: 13px 13px 0 var(--prologue-ink); }
-
-.prologue-photo-wrap {
-  position: relative;
-  grid-area: photo;
-  min-width: 0;
-  overflow: hidden;
-  background: #ead9ca;
-}
-
-.prologue-photo {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.prologue-card-groom .prologue-photo { object-position: center 24%; }
-.prologue-card-bride .prologue-photo { object-position: center center; }
-
-.prologue-photo-label {
-  position: absolute;
-  right: 14px;
-  bottom: 14px;
-  padding: 7px 11px;
-  border: 2px solid var(--prologue-ink);
-  background: var(--prologue-gold);
-  color: var(--prologue-ink);
-  box-shadow: 3px 3px 0 var(--prologue-ink);
-  font-size: .68rem;
-  font-weight: 900;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  transform: rotate(-2deg);
-}
-
-.prologue-handwritten-quote {
-  display: flex;
-  position: relative;
-  grid-area: note;
-  flex-direction: column;
-  justify-content: center;
-  margin: 20px;
-  padding: clamp(30px, 4vw, 52px);
-  border: 2px solid var(--prologue-ink);
-  background-color: var(--prologue-paper);
-  background-image: repeating-linear-gradient(to bottom, transparent 0 33px, rgba(190, 14, 101, .12) 33px 34px);
-  box-shadow: 5px 5px 0 rgba(50, 27, 39, .18);
-  transform: rotate(-1deg);
-}
-
-.prologue-handwritten-quote::before {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  width: 76px;
-  height: 23px;
-  background: rgba(253, 178, 30, .62);
-  content: "";
-  transform: translateX(-50%) rotate(2deg);
-}
-
-.prologue-card-bride .prologue-handwritten-quote { transform: rotate(1deg); }
-
-.handwritten-text {
-  margin: 0 0 18px;
-  color: var(--prologue-ink);
-  font-family: "Caveat", cursive;
-  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
-  font-weight: 400;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-  text-align: left;
-}
-
-.handwritten-attribution {
-  display: block;
-  color: var(--prologue-berry-dark);
-  font-family: "Caveat", cursive;
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  font-style: italic;
-  font-weight: 600;
-  text-align: right;
-}
 
 @media (min-width: 901px) {
   .schedule-page .timeline { transform: translateX(-58px); }
@@ -1054,6 +943,16 @@
   .bridesmaids-page .party-grid {
     grid-template-columns: 1fr;
     max-width: 520px;
+  }
+
+  .party-card,
+  .party-card:first-child {
+    border-left: 0;
+    border-top: 1px solid rgba(190, 14, 101, 0.14);
+  }
+
+  .party-card:first-child {
+    border-top: 0;
   }
 
   .prologue-section {
@@ -1313,91 +1212,4 @@
 
   .schedule-card { border-radius: 18px; }
   .schedule-row { padding: 16px; }
-}
-
-/* RSVP Page - Clean, Elegant Design */
-.rsvp-page {
-  position: relative;
-  padding: 72px 24px 80px;
-  background:
-    radial-gradient(circle at 8% 12%, rgba(253, 178, 30, 0.18), transparent 22rem),
-    radial-gradient(circle at 92% 88%, rgba(190, 14, 101, 0.1), transparent 25rem),
-    #f8eee4;
-  color: #321b27;
-}
-
-.rsvp-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.rsvp-card {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(190, 14, 101, 0.15);
-  border-radius: 16px;
-  box-shadow: 0 12px 32px rgba(77, 35, 54, 0.08);
-  overflow: hidden;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.rsvp-card:hover {
-  box-shadow: 0 16px 40px rgba(77, 35, 54, 0.12);
-  transform: translateY(-2px);
-}
-
-.rsvp-form-container {
-  position: relative;
-  background: #fffaf2;
-}
-
-.rsvp-iframe {
-  width: 100%;
-  height: 1600px;
-  border: none;
-  display: block;
-}
-
-/* Responsive Design for RSVP Page */
-@media (max-width: 800px) {
-  .rsvp-page {
-    padding: 52px 18px 60px;
-  }
-
-  .rsvp-container {
-    padding: 16px;
-  }
-
-  .rsvp-card {
-    border-radius: 12px;
-  }
-}
-
-@media (max-width: 560px) {
-  .rsvp-page {
-    padding: 36px 14px 50px;
-  }
-
-  .rsvp-container {
-    padding: 12px;
-  }
-
-  .rsvp-card {
-    border-radius: 10px;
-  }
-
-  .rsvp-iframe {
-    height: 1750px;
-  }
-}
-
-/* Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-  .rsvp-card {
-    transition: none;
-  }
-
-  .rsvp-card:hover {
-    transform: none;
-  }
 }

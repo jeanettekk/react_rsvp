@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
+import useOverlayBehavior from '../hooks/useOverlayBehavior';
 import './Lightbox.css';
 
 function Lightbox({ images = [], initialIndex = 0, open, onClose, name = '' }) {
@@ -10,26 +11,32 @@ function Lightbox({ images = [], initialIndex = 0, open, onClose, name = '' }) {
     setIndex(initialIndex);
   }, [initialIndex, open]);
 
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = prev; };
-  }, [open]);
+  useOverlayBehavior(open, onClose);
 
   const prev = useCallback(() => setIndex((i) => (i - 1 + images.length) % images.length), [images.length]);
   const next = useCallback(() => setIndex((i) => (i + 1) % images.length), [images.length]);
 
   useEffect(() => {
+    if (!open || images.length < 2) return;
+    const adjacentIndexes = [
+      (index - 1 + images.length) % images.length,
+      (index + 1) % images.length,
+    ];
+    adjacentIndexes.forEach((imageIndex) => {
+      const image = new Image();
+      image.src = images[imageIndex];
+    });
+  }, [images, index, open]);
+
+  useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
-      if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowLeft') prev();
       if (e.key === 'ArrowRight') next();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [open, onClose, prev, next]);
+  }, [open, prev, next]);
 
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
@@ -56,7 +63,7 @@ function Lightbox({ images = [], initialIndex = 0, open, onClose, name = '' }) {
             &#8249;
           </button>
         )}
-        <img src={images[index]} alt="" className="lightbox-image" />
+        <img src={images[index]} alt="" className="lightbox-image" loading="eager" decoding="async" {...{ fetchpriority: 'high' }} />
         {images.length > 1 && (
           <>
             <button className="lightbox-arrow lightbox-arrow-right" onClick={next} aria-label="Next image">

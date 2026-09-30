@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import { CardGiftcard } from '@mui/icons-material';
 import SideMenu from './SideMenu';
 import GiftRegistryModal from './GiftRegistryModal';
-import chibiGoku from '../assets/images/chibi-goku-groom.webp';
-import chibiChiChi from '../assets/images/chibi-chichi-bride.webp';
+import navigationItems from '../config/navigation';
+import chibiGoku from '../assets/images/chibi-goku-groom.webp?w=96&format=webp&quality=76';
+import chibiChiChi from '../assets/images/chibi-chichi-bride.webp?w=96&format=webp&quality=76';
 
 const NavbarContainer = styled(Navbar)`
   position: fixed;
@@ -181,16 +182,6 @@ const GiftNavLink = styled.button`
   @media (max-width: 1103px) { display: none; }
 `;
 
-const links = [
-  ['Home', '/#home'],
-  ['Before We Met', '/#prologue'],
-  ['Our Story', '/#story'],
-  ['Schedule', '/#schedule'],
-  ['Groomsmen', '/#groomsmen'],
-  ['Bridesmaids', '/#bridesmaids'],
-  ['Location', '/#location'],
-];
-
 const AppNavbar = () => {
   const [giftOpen, setGiftOpen] = useState(false);
   const [isRsvpHovered, setIsRsvpHovered] = useState(false);
@@ -201,17 +192,17 @@ const AppNavbar = () => {
     <>
       <NavbarContainer>
         <TitleSection>
-          <MenuButton><SideMenu /></MenuButton>
+          <MenuButton><SideMenu onOpenGiftRegistry={() => setGiftOpen(true)} /></MenuButton>
           <TitleLink to="/#home">
-            <TitleCharacter $isVisible={areChibisVisible} src={chibiGoku} alt="" aria-hidden="true" draggable="false" />
+            <TitleCharacter $isVisible={areChibisVisible} src={chibiGoku} width="96" height="96" alt="" aria-hidden="true" decoding="async" draggable="false" />
             <span>Rhys</span>
             <span aria-hidden="true">&</span>
             <span>Teniola</span>
-            <TitleCharacter $isVisible={areChibisVisible} src={chibiChiChi} alt="" aria-hidden="true" draggable="false" />
+            <TitleCharacter $isVisible={areChibisVisible} src={chibiChiChi} width="96" height="96" alt="" aria-hidden="true" decoding="async" draggable="false" />
           </TitleLink>
         </TitleSection>
         <NavItemsContainer>
-          {links.map(([label, path]) => (
+          {navigationItems.map(({ label, path }) => (
             <StyledNavLink as={Link} to={path} key={path}>{label}</StyledNavLink>
           ))}
           <GiftNavLink type="button" onClick={() => setGiftOpen(true)}>

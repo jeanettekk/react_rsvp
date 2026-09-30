@@ -1,15 +1,19 @@
 import { CollectionsOutlined } from '@mui/icons-material';
 import { useEffect, useRef, useState } from 'react';
-import howWeMet1 from '../assets/images/story/how-we-met.jpg';
-import howWeMet2 from '../assets/images/story/how-we-met-2.jpg';
-import howWeMet3 from '../assets/images/story/how-we-met-3.jpg';
-import howWeMet4 from '../assets/images/story/how-we-met-4.jpg';
-import favouriteChapter from '../assets/images/story/favourite-chapter.jpg';
-import proposal1 from '../assets/images/story/proposal.jpg';
-import proposal2 from '../assets/images/story/proposal-2.jpg';
-import proposal3 from '../assets/images/story/proposal-3.jpg';
-import proposal4 from '../assets/images/story/proposal-4.jpg';
+import howWeMet1 from '../assets/images/story/how-we-met.jpg?format=webp&quality=80';
+import howWeMetThumb from '../assets/images/story/how-we-met.jpg?w=600&format=webp&quality=76';
+import howWeMet2 from '../assets/images/story/how-we-met-2.jpg?format=webp&quality=80';
+import howWeMet3 from '../assets/images/story/how-we-met-3.jpg?format=webp&quality=80';
+import howWeMet4 from '../assets/images/story/how-we-met-4.jpg?format=webp&quality=80';
+import favouriteChapter from '../assets/images/story/favourite-chapter.jpg?format=webp&quality=80';
+import favouriteChapterThumb from '../assets/images/story/favourite-chapter.jpg?w=600&format=webp&quality=76';
+import proposal1 from '../assets/images/story/proposal.jpg?format=webp&quality=80';
+import proposalThumb from '../assets/images/story/proposal.jpg?w=600&format=webp&quality=76';
+import proposal2 from '../assets/images/story/proposal-2.jpg?format=webp&quality=80';
+import proposal3 from '../assets/images/story/proposal-3.jpg?format=webp&quality=80';
+import proposal4 from '../assets/images/story/proposal-4.jpg?format=webp&quality=80';
 import Lightbox from '../components/Lightbox';
+import ResponsiveImage from '../components/ResponsiveImage';
 import useMotionSetting from '../hooks/useMotionSetting';
 import './WeddingPages.css';
 
@@ -19,6 +23,7 @@ const storyChapters = [
     title: 'How We Met',
     label: 'The opening scene',
     images: [howWeMet1, howWeMet2, howWeMet3, howWeMet4],
+    thumbnail: { src: howWeMetThumb, width: 600, height: 599 },
     text: 'Our story began as official "Pleasure Makers" at Magnums Pop up Store in 2016, chocolate 🍫, vibes and nerding out together.',
   },
   {
@@ -26,6 +31,7 @@ const storyChapters = [
     title: 'Our Favourite Chapter',
     label: 'The adventure so far',
     images: [favouriteChapter],
+    thumbnail: { src: favouriteChapterThumb, width: 600, height: 800 },
     text: 'JRock concerts have been the bread and butter to our relationship. Coldrain is a band we have seen together 3 times, and one of out first concerts together.',
   },
   {
@@ -33,6 +39,7 @@ const storyChapters = [
     title: 'The Proposal',
     label: 'The page-turner',
     images: [proposal1, proposal2, proposal3, proposal4],
+    thumbnail: { src: proposalThumb, width: 600, height: 900 },
     text: 'Picture the scene, the sight of our first offical date as a couple. 8 years later in the same location with all our friends',
   },
 ];
@@ -129,7 +136,14 @@ function AboutUs() {
                   onClick={() => openLightbox(chapter)}
                   aria-label={`View ${chapter.title} photo gallery`}
                 >
-                  <img src={chapter.images[0]} alt="" className="story-card-image" />
+                  <ResponsiveImage
+                    src={chapter.thumbnail.src}
+                    width={chapter.thumbnail.width}
+                    height={chapter.thumbnail.height}
+                    alt=""
+                    className="story-card-image"
+                    fetchPriority="low"
+                  />
                   <span className="gallery-hint">
                     <CollectionsOutlined aria-hidden="true" />
                     <span className="gallery-hint-prefix">View </span>gallery
