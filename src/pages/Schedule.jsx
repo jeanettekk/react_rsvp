@@ -14,10 +14,8 @@ const locationStickers = {
 const events = [
   { startTime: '1:00 pm', activity: 'Guest arrival and seating', location: 'Church' },
   { startTime: '1:30 pm', endTime: '2:00 pm', activity: 'Wedding ceremony', location: 'Church', highlight: true },
-  { startTime: '4:00 pm', activity: 'Guests travel to the reception', location: 'Travel' },
-  { startTime: '4:30 pm', activity: 'Guests arrival and seating', location: 'Theatre' },
-  { startTime: '5:30 pm', activity: 'Bride and groom entrance', location: 'Theatre', highlight: true },
-  { startTime: '5:45 pm', activity: 'Buffet dinner and games', location: 'Theatre' },
+  { startTime: '3:30 pm', activity: 'Cocktail Hour', location: 'Church' },
+  { startTime: '5:00 pm', activity: 'Reception', location: 'Theatre', highlight: true },
   { startTime: '7:30 pm', activity: 'Wedding speeches', location: 'Theatre' },
   { startTime: '8:00 pm', activity: 'First dance and party', location: 'Theatre', highlight: true },
   { startTime: '11:00 pm', activity: 'Celebration ends', location: 'Theatre' },

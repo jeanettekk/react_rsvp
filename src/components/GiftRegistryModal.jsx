@@ -1,7 +1,9 @@
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import useOverlayBehavior from '../hooks/useOverlayBehavior';
-import couplePhoto from '../assets/images/couple-2.jpg';
+import ResponsiveImage from './ResponsiveImage';
+import couplePhoto from '../assets/images/couple-2.jpg?w=720&format=webp&quality=80';
+import couplePhotoSrcSet from '../assets/images/couple-2.jpg?w=360;540;720&format=webp&quality=80&as=srcset';
 import './GiftRegistryModal.css';
 
 const REGISTRY_URL = 'https://www.moonsift.com/collection/teniola_soyeju2026/SHaB5KHls6XwcAFc5HfI';
@@ -37,7 +39,18 @@ function GiftRegistryModal({ open, onClose }) {
           </div>
 
           <div className="gift-photo-container" aria-hidden="true">
-            <img src={couplePhoto} alt="" className="gift-photo" draggable="false" />
+            <ResponsiveImage
+              src={couplePhoto}
+              srcSet={couplePhotoSrcSet}
+              sizes="280px"
+              width={280}
+              height={350}
+              alt="Couple at gift registry"
+              className="gift-photo"
+              loading="eager"
+              fetchPriority="high"
+              draggable="false"
+            />
           </div>
         </div>
       </div>
