@@ -52,6 +52,12 @@ function Lightbox({ images = [], initialIndex = 0, open, onClose, name = '' }) {
 
   return (
     <div className="lightbox-backdrop" onClick={onClose}>
+      <div className="lightbox-header" onClick={(e) => e.stopPropagation()}>
+        {name ? <span className="lightbox-name">{name}</span> : <span className="lightbox-name" aria-hidden="true" />}
+        <button className="lightbox-close" onClick={onClose} aria-label="Close lightbox">
+          &#215;
+        </button>
+      </div>
       <div
         className="lightbox-content"
         onClick={(e) => e.stopPropagation()}
@@ -74,12 +80,10 @@ function Lightbox({ images = [], initialIndex = 0, open, onClose, name = '' }) {
           </>
         )}
       </div>
-      {name && <span className="lightbox-name">{name}</span>}
-      <button className="lightbox-close" onClick={onClose} aria-label="Close lightbox">
-        &#215;
-      </button>
       {images.length > 1 && (
-        <span className="lightbox-counter">{index + 1} / {images.length}</span>
+        <div className="lightbox-footer" onClick={(e) => e.stopPropagation()}>
+          <span className="lightbox-counter">{index + 1} / {images.length}</span>
+        </div>
       )}
     </div>
   );
