@@ -4,7 +4,7 @@ import AppNavbar from './components/AppNavbar';
 import AppFooter from './components/AppFooter';
 import KamehamehaAnimation from './components/KamehamehaAnimation';
 import Prologue from './components/Prologue';
-import { Home, AboutUs, Schedule, Groomsmen, Bridesmaids, Location, Rsvp } from './pages';
+import { Home, AboutUs, Schedule, Groomsmen, Bridesmaids, Location, Rsvp, Faq } from './pages';
 
 const LandingPage = () => {
   const { hash } = useLocation();
@@ -62,6 +62,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/rsvp" element={<Rsvp />} />
+        <Route path="/faq" element={<Faq />} />
         <Route path="/about" element={<Navigate to="/#story" replace />} />
         <Route path="/prologue" element={<Navigate to="/#prologue" replace />} />
         <Route path="/schedule" element={<Navigate to="/#schedule" replace />} />

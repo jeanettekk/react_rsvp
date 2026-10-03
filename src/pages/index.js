@@ -5,3 +5,4 @@ export { default as Groomsmen } from './Groomsmen';
 export { default as Bridesmaids } from './Bridesmaids';
 export { default as Location } from './Location';
 export { default as Rsvp } from './Rsvp';
+export { default as Faq } from './Faq';
