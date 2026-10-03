@@ -1,0 +1,56 @@
+.faq-page { padding-top: 64px; }
+.faq-intro { margin-bottom: 30px; }
+.faq-sticker { display: inline-block; margin-bottom: 30px; padding: 9px 18px; border: 2px solid #321b27; border-radius: 6px; background: #fdb21e; box-shadow: 3px 3px 0 #321b27; font-weight: 800; transform: rotate(-4deg); }
+.faq-intro h1 { margin-bottom: 12px; }
+.faq-topics { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 950px; margin: 0 auto 38px; }
+.faq-topics a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 18px; border: 1px solid #be0e65; border-radius: 999px; background: #fffaf2; color: #9e0b53; font-weight: 700; text-decoration: none; }
+.faq-topics a:hover { background: #be0e65; color: white; }
+.faq-content { max-width: 880px; margin-inline: auto; }
+.faq-section { margin-bottom: 38px; scroll-margin-top: 140px; }
+.faq-section h2 { display: flex; align-items: center; gap: 14px; margin: 0 0 18px; font-size: clamp(1.35rem, 4vw, 1.85rem); line-height: 1.4; }
+.faq-topic-icon { display: inline-grid; flex: 0 0 42px; place-items: center; width: 42px; height: 42px; border: 2px solid #321b27; border-radius: 12px; background: #fdb21e; font-family: sans-serif; font-size: 1.5rem; box-shadow: 2px 2px 0 #321b27; }
+.faq-travel-icon { position: relative; padding: 0; color: #321b27; cursor: pointer; }
+.faq-travel-icon:focus-visible { outline: 3px solid #1578b7; outline-offset: 4px; }
+.faq-ship-voyage { position: fixed; z-index: 1001; right: 0; bottom: 12px; left: 0; height: 170px; overflow: hidden; pointer-events: none; visibility: hidden; }
+.faq-travel-surprise { position: absolute; bottom: 8px; left: 0; width: 99px; height: 116px; object-fit: contain; image-rendering: pixelated; transform: translateX(100vw); }
+.faq-travel-icon:is(:hover, :focus-visible) .faq-ship-voyage { visibility: visible; }
+.faq-travel-icon:is(:hover, :focus-visible) .faq-travel-surprise { animation: faq-ship-sail 10s linear both; }
+@keyframes faq-ship-sail {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-travel-icon:is(:hover, :focus-visible) .faq-travel-surprise { animation: none; transform: translateX(16px); }
+}
+.faq-questions { overflow: hidden; border: 1px solid rgba(190, 14, 101, .25); border-radius: 18px; background: #fffcf8; box-shadow: 4px 5px 0 rgba(190, 14, 101, .1); }
+.faq-item + .faq-item { border-top: 1px solid rgba(190, 14, 101, .18); }
+.faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 23px 26px; color: #321b27; font-size: 1.08rem; font-weight: 800; line-height: 1.5; list-style: none; cursor: pointer; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary:hover, .faq-item[open] summary { background: #fbeaf1; color: #9e0b53; }
+.faq-toggle { position: relative; flex: 0 0 28px; width: 28px; height: 28px; border-radius: 50%; background: #be0e65; }
+.faq-toggle::before, .faq-toggle::after { position: absolute; top: 13px; left: 8px; width: 12px; height: 2px; background: white; content: ''; }
+.faq-toggle::after { transform: rotate(90deg); }
+.faq-item[open] .faq-toggle::after { display: none; }
+.faq-answer { padding: 22px 26px 26px; color: #604652; font-size: 1.05rem; line-height: 1.8; }
+.faq-answer p { margin: 0 0 14px; }
+.faq-answer > :last-child { margin-bottom: 0; }
+.faq-answer strong { color: #321b27; }
+.faq-answer a { color: #9e0b53; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.faq-answer ul { padding-left: 24px; }
+.faq-answer li + li { margin-top: 5px; }
+.faq-page :is(a, summary):focus-visible { outline: 3px solid #1578b7; outline-offset: 3px; }
+.faq-item summary:focus-visible { outline-offset: -4px; }
+.faq-ready { margin-top: 52px; padding: 36px 24px; border-radius: 22px; background: #be0e65; color: #fffaf2; text-align: center; }
+.faq-ready > span { color: #fdb21e; font-size: 2rem; }
+.faq-ready h2 { margin: 12px 0; color: white; font-size: clamp(1.7rem, 5vw, 2.3rem); }
+.faq-ready p { margin-bottom: 24px; }
+.faq-back { display: block; width: fit-content; margin: 22px auto 0; color: #fffaf2; text-decoration: underline; text-underline-offset: 4px; }
+.faq-back:hover { color: #fdb21e; }
+@media (max-width: 560px) {
+  .faq-page { padding-top: 38px; }
+  .faq-topics { gap: 8px; }
+  .faq-topics a { padding: 9px 13px; font-size: .88rem; }
+  .faq-item summary { gap: 12px; padding: 18px; font-size: 1rem; }
+  .faq-answer { padding: 18px; font-size: 1rem; }
+  .faq-section { scroll-margin-top: 95px; }
+}

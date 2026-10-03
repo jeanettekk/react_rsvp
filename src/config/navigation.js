@@ -5,6 +5,7 @@ import {
   Face6,
   Favorite,
   Home,
+  HelpOutline,
   LocationOn,
 } from '@mui/icons-material';
 
@@ -16,6 +17,7 @@ const navigationItems = [
   { label: 'Groomsmen', path: '/#groomsmen', Icon: Face6 },
   { label: 'Bridesmaids', path: '/#bridesmaids', Icon: Face2 },
   { label: 'Location', path: '/#location', Icon: LocationOn },
+  { label: 'FAQs', path: '/faq', Icon: HelpOutline },
 ];
 
 export default navigationItems;
